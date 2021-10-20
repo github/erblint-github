@@ -1,0 +1,13 @@
+inherit_gem:
+  rubocop-github:
+    - config/default_edge.yml
+    - config/rails_edge.yml
+
+AllCops:
+  NewCops: enable
+
+Rails/RefuteMethods:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
