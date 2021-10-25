@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "erb-lint/linters/github/accessibility/no_redundant_image_alt"
+require "erblint-github/linters/github/accessibility/no_redundant_image_alt"
 
 class NoRedundantImageAltTest < LinterTestCase
   def linter_class
