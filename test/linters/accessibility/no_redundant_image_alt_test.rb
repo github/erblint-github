@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "erblint-github/linters/github/accessibility/no_redundant_image_alt"
 
 class NoRedundantImageAltTest < LinterTestCase
   def linter_class
@@ -26,6 +25,16 @@ class NoRedundantImageAltTest < LinterTestCase
     @file = "<img alt='an octopus'></img>"
     @linter.run(processed_source)
 
+    assert_empty @linter.offenses
+  end
+
+  def test_does_not_warn_if_linter_is_disabled_in_file
+    @file = <<~HTML
+      <%# erblint:disable GitHub::Accessibility::NoRedundantImageAlt %>
+      <img alt='image of an octopus'></img>
+    HTML
+
+    @linter.run(processed_source)
     assert_empty @linter.offenses
   end
 end

@@ -1,0 +1,97 @@
+# frozen_string_literal: true
+
+require "test_helper"
+require "erblint-github/linters/custom_helpers"
+
+class CustomHelpersTest < LinterTestCase
+  include ERBLint::Linters::CustomHelpers
+
+  class FakeLinter < ERBLint::Linter
+    attr_accessor :offenses
+
+    MESSAGE = "Please fix your code."
+  end
+
+  def linter_class
+    CustomHelpersTest::FakeLinter
+  end
+
+  def extended_linter
+    @linter.extend(ERBLint::Linters::CustomHelpers)
+  end
+
+  def test_rule_disabled_clears_offenses_if_rule_is_disabled
+    @file = <<~HTML
+      <%# erblint:disable CustomHelpersTest::FakeLinter %>
+    HTML
+    @linter.offenses = ["fake offense"]
+    assert_equal @linter.offenses.length, 1
+
+    extended_linter.rule_disabled?(processed_source)
+    assert_empty @linter.offenses
+  end
+
+  def test_rule_disabled_adds_offense_if_disable_comment_is_present_but_no_offense
+    @file = <<~HTML
+      <%# erblint:disable CustomHelpersTest::FakeLinter %>
+    HTML
+    assert_empty @linter.offenses
+
+    extended_linter.rule_disabled?(processed_source)
+
+    assert_equal @linter.offenses.length, 1
+  end
+
+  def test_generate_offense_with_message_defined_in_linter_class
+    @file = <<~HTML
+      <%# erblint:disable CustomHelpersTest::FakeLinter %>
+      <div id="fake-div-id">Hello.</div>
+    HTML
+    assert_empty @linter.offenses
+
+    tag = extended_linter.tags(processed_source).first
+    extended_linter.generate_offense(CustomHelpersTest::FakeLinter, processed_source, tag)
+
+    assert_equal @linter.offenses.length, 1
+    assert_match CustomHelpersTest::FakeLinter::MESSAGE, @linter.offenses.first.message
+  end
+
+  def test_generate_offense_with_message_passed_in_as_parameter
+    @file = <<~HTML
+      <div id="fake-div-id">Hello.</div>
+    HTML
+    assert_empty @linter.offenses
+
+    tag = extended_linter.tags(processed_source).first
+    extended_linter.generate_offense(CustomHelpersTest::FakeLinter, processed_source, tag, "bad!")
+
+    assert_equal @linter.offenses.length, 1
+    assert_match(/bad!/, @linter.offenses.first.message)
+  end
+
+  def test_possible_attribute_values_returns_attribute_value_matches
+    @file = <<~HTML
+      <img alt="mona lisa">
+      <button type="button"></button>
+      <a></a>
+    HTML
+
+    image_tag = extended_linter.tags(processed_source).first
+    image_tag_alt_values = extended_linter.possible_attribute_values(image_tag, "alt")
+    assert_equal image_tag_alt_values, ["mona lisa"]
+
+    button_tag = extended_linter.tags(processed_source)[1]
+    button_tag_type_values = extended_linter.possible_attribute_values(button_tag, "type")
+    assert_equal button_tag_type_values, ["button"]
+  end
+
+  def test_possible_attribute_values_returns_empty_array_if_no_attribute_value_matches
+    @file = <<~HTML
+      <a></a>
+    HTML
+
+    anchor_tag = extended_linter.tags(processed_source).first
+    possible_attribute_values = extended_linter.possible_attribute_values(anchor_tag, "href")
+    assert_equal possible_attribute_values, []
+  end
+end

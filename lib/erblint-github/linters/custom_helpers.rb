@@ -11,7 +11,7 @@ module ERBLint
           indicator_node, _, code_node, = *node
           indicator = indicator_node&.loc&.source
           comment = code_node&.loc&.source&.strip
-          rule_name = self.class.name.match(/:?:?(\w+)\Z/)[1]
+          rule_name = self.class.name.gsub("ERBLint::Linters::", "")
 
           if indicator == "#" && comment.start_with?("erblint:disable") && comment.match(rule_name)
             if @offenses.any?
