@@ -23,16 +23,16 @@ require "erblint-github/linters"
 ```yaml 
 ---
 linters:
-  GitHub::Accessibility::ImageHasAlt:
+  Accessibility::ImageHasAlt:
     enabled: true
-  GitHub::Accessibility::NoRedundantImageAlt:
+  Accessibility::NoRedundantImageAlt:
     enabled: true
 ```
 
 ### Rules
 
-- [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
-- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
+- [Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
+- [Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 
 ## Testing
 

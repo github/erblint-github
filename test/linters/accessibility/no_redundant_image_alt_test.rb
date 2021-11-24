@@ -4,7 +4,7 @@ require "test_helper"
 
 class NoRedundantImageAltTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::NoRedundantImageAlt
+    ERBLint::Linters::Accessibility::NoRedundantImageAlt
   end
 
   def test_warns_if_alt_contains_image
