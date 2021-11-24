@@ -45,6 +45,18 @@ module ERBLint
       def tags(processed_source)
         processed_source.parser.nodes_with_type(:tag).map { |tag_node| BetterHtml::Tree::Tag.from_node(tag_node) }
       end
+
+      def rule_disable_comment
+        rule_name = self.class.name.gsub("ERBLint::Linters::", "")
+        "<%# erblint:disable #{rule_name} %>\n"
+      end
+
+      # Allow linter violations to be bulk disabled by adding a comment on top of file
+      def autocorrect(processed_source, offense)
+        lambda do |corrector|
+          corrector.insert_before(processed_source.source_buffer.source_range, rule_disable_comment) unless processed_source.file_content.include?(rule_disable_comment)
+        end
+      end
     end
   end
 end

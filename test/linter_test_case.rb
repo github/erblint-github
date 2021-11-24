@@ -24,4 +24,14 @@ class LinterTestCase < Minitest::Test
   def tags
     processed_source.parser.nodes_with_type(:tag).map { |tag_node| BetterHtml::Tree::Tag.from_node(tag_node) }
   end
+
+  def corrected_content
+    @corrected_content ||= begin
+      source = processed_source
+      @linter.run(source)
+      corrector = ERBLint::Corrector.new(source, offenses)
+
+      corrector.corrected_content
+    end
+  end
 end

@@ -10,11 +10,19 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
+<<<<<<< HEAD
           GENERIC_ELEMENTS = %w[span div].freeze
           NAME_RESTRICTED_ELEMENTS = %w[h1 h2 h3 h4 h5 h6 strong i p b code].freeze
 
           # https://w3c.github.io/aria/#namefromprohibited
           ROLES_WHICH_CANNOT_BE_NAMED = %w[caption code definition deletion emphasis insertion mark none paragraph presentation strong subscript suggestion superscript term time].freeze
+=======
+          GENERIC_ELEMENTS = %w(span div).freeze
+          NAME_RESTRICTED_ELEMENTS = %w(h1 h2 h3 h4 h5 h6 strong i p b code).freeze
+
+          # https://w3c.github.io/aria/#namefromprohibited
+          ROLES_WHICH_CANNOT_BE_NAMED = %w(caption code definition deletion emphasis insertion mark none paragraph presentation strong subscript suggestion superscript term time).freeze
+>>>>>>> 48a2de6 (add autocorrect support)
 
           MESSAGE = "[aria-label] and [aria-labelledby] usage are only reliably supported on interactive elements and a subset of ARIA roles"
 
