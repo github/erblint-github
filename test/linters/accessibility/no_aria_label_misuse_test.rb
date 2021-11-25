@@ -3,11 +3,8 @@
 require "test_helper"
 
 class NoAriaLabelMisuseTest < LinterTestCase
-<<<<<<< HEAD
-=======
   include SharedLinterTests
 
->>>>>>> 48a2de6 (add autocorrect support)
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::NoAriaLabelMisuse
   end
@@ -71,15 +68,9 @@ class NoAriaLabelMisuseTest < LinterTestCase
 
   def test_does_not_warn_if_generic_elements_have_aria_label_and_allowed_role
     @file = <<~HTML
-<<<<<<< HEAD
       <div role="banner" aria-label="text"></div>
       <div role="button" aria-label="text 1"></div>
       <div role="combobox" aria-label="text 2"></div>
-=======
-    <div role="banner" aria-label="text"></div>
-    <div role="button" aria-label="text 1"></div>
-    <div role="combobox" aria-label="text 2"></div>
->>>>>>> 48a2de6 (add autocorrect support)
     HTML
 
     @linter.run(processed_source)

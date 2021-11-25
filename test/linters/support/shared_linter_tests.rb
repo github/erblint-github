@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This requires
 module SharedLinterTests
   def linter_name
     linter_class.name.gsub("ERBLint::Linters::", "")
@@ -27,7 +28,7 @@ module SharedLinterTests
     assert_equal expected, corrected_content
   end
 
-  def test_does_not_autocorrect_with_disable_comment_if_already_present
+  def test_does_not_autocorrect_with_disable_comment_if_comment_already_present
     @file = <<~HTML
       <%# erblint:disable #{linter_name} %>
       #{example_invalid_case}

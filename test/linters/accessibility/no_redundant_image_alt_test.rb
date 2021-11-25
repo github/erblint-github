@@ -4,7 +4,7 @@ require "test_helper"
 
 class NoRedundantImageAltTest < LinterTestCase
   include SharedLinterTests
-  
+
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::NoRedundantImageAlt
   end

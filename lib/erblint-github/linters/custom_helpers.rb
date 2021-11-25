@@ -51,8 +51,8 @@ module ERBLint
         "<%# erblint:disable #{rule_name} %>\n"
       end
 
-      # Allow linter violations to be bulk disabled by adding a comment on top of file
-      def autocorrect(processed_source, offense)
+      # Allow linter violations to be disabled in bulk.
+      def autocorrect(processed_source, _offense)
         lambda do |corrector|
           corrector.insert_before(processed_source.source_buffer.source_range, rule_disable_comment) unless processed_source.file_content.include?(rule_disable_comment)
         end

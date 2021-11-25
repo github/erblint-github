@@ -2,11 +2,7 @@
 
 ## Rule Details
 
-<<<<<<< HEAD
 This rule aims to minimize misuse of the `aria-label` and `aria-labelledby` attributes because the usage of these attributes is only guaranteed on interactive elements and a subset of ARIA roles. W3C provides [a list of ARIA roles which cannot be named](https://w3c.github.io/aria/#namefromprohibited) which is used as a basis for this linter.
-=======
-This rule aims to minimize misuse of the `aria-label` and `aria-labelledby` attributes because the usage of these attributes is only guaranteed on interactive elements and a subset of ARIA roles. WSC provides [a list of ARIA roles which cannot be named](https://w3c.github.io/aria/#namefromprohibited) which is used as a basis for this linter.
->>>>>>> 48a2de6 (add autocorrect support)
 
 There are conflicting resources on what elements should support these naming attributes. For now, this rule will operate under a relatively simple heuristic aimed to minimize false positives, but has room for future improvements.
 
