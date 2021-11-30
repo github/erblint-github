@@ -25,14 +25,17 @@ require "erblint-github/linters"
 linters:
   GitHub::Accessibility::ImageHasAlt:
     enabled: true
+  GitHub::Accessibility::NoAriaLabelMisuse:
+    enabled: true
   GitHub::Accessibility::NoRedundantImageAlt:
     enabled: true
 ```
 
 ### Rules
 
+- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/no-aria-label-misuse.md)
+- [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/image-has-alt.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
-- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 
 ## Testing
 
