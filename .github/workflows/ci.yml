@@ -17,7 +17,7 @@ jobs:
         key: gems-build-rails-main-ruby-2.7.x-${{ hashFiles('**/Gemfile.lock') }}
     - name: Lint with Rubocop
       run: |
-        gem install bundler:2.2.9
+        gem install bundler:2.2.32
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
         bundle exec rubocop
