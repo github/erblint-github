@@ -9,5 +9,7 @@ Rake::TestTask.new do |t|
   t.test_files = FileList[ENV["TESTS"] || "test/**/*_test.rb"]
 end
 
+Rake.add_rakelib "lib/tasks"
+
 desc "Run tests"
 task default: :test
