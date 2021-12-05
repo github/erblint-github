@@ -5,9 +5,13 @@ inherit_gem:
 
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
 
 Rails/RefuteMethods:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Rails/RakeEnvironment:
   Enabled: false
