@@ -31,10 +31,10 @@ linters:
     enabled: true
 ```
 
-### Rules
+## Rules
 
-- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/no-aria-label-misuse.md)
-- [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/image-has-alt.md)
+- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
+- [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/no-aria-label-misuse.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
 
 ## Testing
