@@ -3,6 +3,8 @@
 require "test_helper"
 
 class NoAriaLabelMisuseTest < LinterTestCase
+  include SharedLinterTests
+
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::NoAriaLabelMisuse
   end

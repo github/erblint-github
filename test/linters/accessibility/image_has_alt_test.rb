@@ -3,12 +3,20 @@
 require "test_helper"
 
 class ImageHasAltTest < LinterTestCase
+  include SharedLinterTests
+
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::ImageHasAlt
   end
 
+  def example_invalid_case
+    <<~HTML
+      <img></img>
+    HTML
+  end
+
   def test_warns_if_image_has_no_alt_attribute
-    @file = "<img></img>"
+    @file = example_invalid_case
     @linter.run(processed_source)
 
     refute_empty @linter.offenses
