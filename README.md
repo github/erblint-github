@@ -23,6 +23,8 @@ require "erblint-github/linters"
 ```yaml 
 ---
 linters:
+  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
+    enabled: true
   GitHub::Accessibility::ImageHasAlt:
     enabled: true
   GitHub::Accessibility::NoAriaLabelMisuse:
@@ -33,6 +35,7 @@ linters:
 
 ## Rules
 
+- [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 - [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/no-aria-label-misuse.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
