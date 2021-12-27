@@ -11,7 +11,7 @@ module ERBLint
           indicator_node, _, code_node, = *node
           indicator = indicator_node&.loc&.source
           comment = code_node&.loc&.source&.strip
-          rule_name = self.class.name.gsub("ERBLint::Linters::", "")
+          rule_name = simple_class_name
 
           if indicator == "#" && comment.start_with?("erblint:disable") && comment.match(rule_name)
             if @offenses.any?
@@ -26,8 +26,8 @@ module ERBLint
 
       def generate_offense(klass, processed_source, tag, message = nil, replacement = nil)
         message ||= klass::MESSAGE
-        klass_name = klass.name.demodulize
-        offense = ["#{klass_name}:#{message}", tag.node.loc.source].join("\n")
+        message += "\nLearn more at https://github.com/github/erblint-github#rules.\n"
+        offense = ["#{simple_class_name}:#{message}", tag.node.loc.source].join("\n")
         add_offense(processed_source.to_source_range(tag.loc), offense, replacement)
       end
 
@@ -44,6 +44,10 @@ module ERBLint
 
       def tags(processed_source)
         processed_source.parser.nodes_with_type(:tag).map { |tag_node| BetterHtml::Tree::Tag.from_node(tag_node) }
+      end
+
+      def simple_class_name
+        self.class.name.gsub("ERBLint::Linters::", "")
       end
     end
   end
