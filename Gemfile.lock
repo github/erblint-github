@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    erblint-github (0.0.2)
+    erblint-github (0.0.3)
 
 GEM
   remote: https://rubygems.org/
