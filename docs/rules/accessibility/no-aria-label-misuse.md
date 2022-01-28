@@ -12,7 +12,7 @@ Also check out the following resources:
 - [w3c/aria Consider prohibiting author naming certain roles #833](https://github.com/w3c/aria/issues/833)
 - [Not so short note on aria-label usage - Big Table Edition](https://html5accessibility.com/stuff/2020/11/07/not-so-short-note-on-aria-label-usage-big-table-edition/)
 
-👎 Examples of **incorrect** code for this rule:
+### 👎 Examples of **incorrect** code for this rule:
 
 ```erb
 <span aria-label="This does something">Hello</span>
@@ -26,7 +26,7 @@ Also check out the following resources:
 <h1 aria-label="This will override the content">Page title</h1>
 ```
 
-👍 Examples of **correct** code for this rule:
+### 👍 Examples of **correct** code for this rule:
 
 ```erb
 <span>Hello</span>
