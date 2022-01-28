@@ -6,13 +6,13 @@
 
 Learn more at [W3C WAI Images Tutorial](https://www.w3.org/WAI/tutorials/images/).
 
-👎 Examples of **incorrect** code for this rule:
+### 👎 Examples of **incorrect** code for this rule:
 
 ```erb
 <img src="logo.png">
 ```
 
-👍 Examples of **correct** code for this rule:
+### 👍 Examples of **correct** code for this rule:
 
 ```erb
 <!-- good -->
