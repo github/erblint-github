@@ -27,7 +27,7 @@ module ERBLint
       def counter_correct?(processed_source)
         comment_node = nil
         expected_count = 0
-        rule_name = self.class.name.match(/:?:?(\w+)\Z/)[1]
+        rule_name = simple_class_name
         offenses_count = @offenses.length
 
         processed_source.parser.ast.descendants(:erb).each do |node|
