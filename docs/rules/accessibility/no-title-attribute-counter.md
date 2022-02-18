@@ -23,7 +23,7 @@ Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 <a title="A home for all developers" href="github.com">GitHub</a>
 ```
 
-```
+```erb
 <a href="/" title="github.com">GitHub</a>
 ```
 
@@ -34,6 +34,6 @@ Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 <p id="description" class="tooltip js-tooltip">A home for all developers</p>
 ```
 
-```
+```erb
 <a href="github.com">GitHub</a>
 ```

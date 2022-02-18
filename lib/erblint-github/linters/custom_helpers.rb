@@ -31,19 +31,19 @@ module ERBLint
         offenses_count = @offenses.length
 
         processed_source.parser.ast.descendants(:erb).each do |node|
-          indicator_node, _, code_node, _ = *node
+          indicator_node, _, code_node, = *node
           indicator = indicator_node&.loc&.source
           comment = code_node&.loc&.source&.strip
 
-          if indicator == "#" && comment.start_with?("erblint:count") && comment.match(rule_name)
+          if indicator == "#" && comment.start_with?("erblint:counter") && comment.match(rule_name)
             comment_node = node
             expected_count = comment.match(/\s(\d+)\s?$/)[1].to_i
           end
         end
 
-        if offenses_count == 0
+        if offenses_count.zero?
           # have to adjust to get `\n` so we delete the whole line
-          add_offense(processed_source.to_source_range(comment_node.loc.adjust(end_pos: 1)), "Unused erblint:count comment for #{rule_name}", "") if comment_node
+          add_offense(processed_source.to_source_range(comment_node.loc.adjust(end_pos: 1)), "Unused erblint:counter comment for #{rule_name}", "") if comment_node
           return
         end
 
@@ -53,9 +53,7 @@ module ERBLint
           add_offense(processed_source.to_source_range(first_offense.source_range), "#{rule_name}: If you must, add <%# erblint:counter #{rule_name} #{offenses_count} %> to bypass this check.", "<%# erblint:counter #{rule_name} #{offenses_count} %>")
         else
           clear_offenses
-          if expected_count != offenses_count
-            add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%#  erblint:counter #{rule_name} #{offenses_count} %>")
-          end
+          add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%# erblint:counter #{rule_name} #{offenses_count} %>") if expected_count != offenses_count
         end
       end
 

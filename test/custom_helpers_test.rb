@@ -11,7 +11,7 @@ class CustomHelpersTest < LinterTestCase
 
     MESSAGE = "Please fix your code."
   end
-  
+
   def linter_class
     CustomHelpersTest::FakeLinter
   end
@@ -43,26 +43,26 @@ class CustomHelpersTest < LinterTestCase
 
   def test_counter_correct_does_not_add_offense_if_counter_matches_offense_count
     @file = <<~HTML
-      <%# erblint:count CustomHelpersTest::FakeLinter 1 %>
+      <%# erblint:counter CustomHelpersTest::FakeLinter 1 %>
     HTML
     @linter.offenses = ["fake offense"]
-    
+
     extended_linter.counter_correct?(processed_source)
     assert_empty @linter.offenses
   end
 
   def test_counter_correct_add_offense_if_counter_comment_is_unused
     @file = <<~HTML
-      <%# erblint:count CustomHelpersTest::FakeLinter 1 %>
+      <%# erblint:counter CustomHelpersTest::FakeLinter 1 %>
     HTML
 
     extended_linter.counter_correct?(processed_source)
-    assert_equal "Unused erblint:count comment for CustomHelpersTest::FakeLinter", @linter.offenses.first.message
+    assert_equal "Unused erblint:counter comment for CustomHelpersTest::FakeLinter", @linter.offenses.first.message
   end
 
   def test_counter_correct_add_offense_if_counter_comment_count_is_incorrect
     @file = <<~HTML
-      <%# erblint:count CustomHelpersTest::FakeLinter 2 %>
+      <%# erblint:counter CustomHelpersTest::FakeLinter 2 %>
     HTML
     @linter.offenses = ["fake offense"]
 
