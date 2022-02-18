@@ -35,6 +35,8 @@ linters:
     enabled: true
   GitHub::Accessibility::NoRedundantImageAlt:
     enabled: true
+  GitHub::Accessibility::NoTitleAttributeCounter:
+    enabled: true
 ```
 
 ## Rules
@@ -45,6 +47,7 @@ linters:
 - [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/no-aria-label-misuse.md)
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
+- [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
 
 ## Testing
 
