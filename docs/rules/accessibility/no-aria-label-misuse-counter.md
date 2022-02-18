@@ -1,4 +1,4 @@
-# No aria label misuse
+# No aria label misuse counter
 
 ## Rule Details
 

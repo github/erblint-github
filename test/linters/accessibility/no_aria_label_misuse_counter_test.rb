@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class NoAriaLabelMisuseTest < LinterTestCase
+class NoAriaLabelMisuseCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::NoAriaLabelMisuse
+    ERBLint::Linters::GitHub::Accessibility::NoAriaLabelMisuseCounter
   end
 
   def example_invalid_case
@@ -29,7 +29,7 @@ class NoAriaLabelMisuseTest < LinterTestCase
     HTML
 
     @linter.run(processed_source)
-    assert_equal @linter.offenses.length, 11
+    assert_equal @linter.offenses.length, 12
   end
 
   def test_warns_if_generic_elements_have_aria_label_and_no_role
@@ -39,7 +39,7 @@ class NoAriaLabelMisuseTest < LinterTestCase
     HTML
 
     @linter.run(processed_source)
-    assert_equal 2, @linter.offenses.length
+    assert_equal 3, @linter.offenses.length
   end
 
   def test_warns_if_generic_elements_have_aria_label_and_prohibited_role
@@ -61,7 +61,7 @@ class NoAriaLabelMisuseTest < LinterTestCase
     HTML
 
     @linter.run(processed_source)
-    assert_equal 14, @linter.offenses.length
+    assert_equal 15, @linter.offenses.length
   end
 
   def test_does_not_warn_if_generic_elements_have_aria_label_and_allowed_role
@@ -73,5 +73,39 @@ class NoAriaLabelMisuseTest < LinterTestCase
 
     @linter.run(processed_source)
     assert_empty @linter.offenses
+  end
+
+  def test_does_not_raise_when_ignore_comment_with_correct_count
+    @file = <<~ERB
+      <%# erblint:counter GitHub::Accessibility::NoAriaLabelMisuseCounter 2 %>
+      <span aria-label="This is a bad idea">Some text</span>
+      <span aria-label="This is still a bad idea">More text</span>
+    ERB
+
+    @linter.run(processed_source)
+    assert_empty @linter.offenses
+  end
+
+  def test_does_not_autocorrect_when_ignores_are_correct
+    @file = <<~ERB
+      <%# erblint:counter GitHub::Accessibility::NoAriaLabelMisuseCounter 1 %>
+      <span aria-label="This is a bad idea">Some text</span>
+    ERB
+
+    assert_equal @file, corrected_content
+  end
+
+  def test_does_autocorrect_when_ignores_are_not_correct
+    @file = <<~ERB
+      <%# erblint:counter GitHub::Accessibility::NoAriaLabelMisuseCounter 3 %>
+      <span aria-label="This is a bad idea">Some text</span>
+    ERB
+    refute_equal @file, corrected_content
+
+    expected_content = <<~ERB
+      <%# erblint:counter GitHub::Accessibility::NoAriaLabelMisuseCounter 1 %>
+      <span aria-label="This is a bad idea">Some text</span>
+    ERB
+    assert_equal expected_content, corrected_content
   end
 end
