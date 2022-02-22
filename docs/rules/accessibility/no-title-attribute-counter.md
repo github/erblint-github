@@ -6,7 +6,7 @@ The `title` attribute is strongly discouraged. The only exception is on an `<ifr
 
 The `title` attribute is commonly seen set on links, matching the link text. This is redundant and unnecessary so it can be simply be removed.
 
-If you are considering `title` attribute to provide supplementary description, consider whether the text in question can be persisted in the design. Alternatively, if it's important to display supplementary text that is hidden by default, consider using an **accessible** tooltip implementation that uses the `aria-labelledby` or `aria-describedby` semantics. Even so, proceed with caution: tooltips should only be used on interactive elements like links or buttons.
+If you are considering the`title` attribute to provide supplementary description, consider whether the text in question can be persisted in the design. Alternatively, if it's important to display supplementary text that is hidden by default, consider using an **accessible** tooltip implementation that uses the `aria-labelledby` or `aria-describedby` semantics. Even so, proceed with caution: tooltips should only be used on interactive elements like links or buttons.
 
 ### Should I use the `title` attribute to provide an accessible name for an `<svg>`?
 
