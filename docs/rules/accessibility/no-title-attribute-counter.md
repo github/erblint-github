@@ -8,7 +8,7 @@ The `title` attribute is commonly seen set on links, matching the link text. Thi
 
 If you are considering `title` attribute to provide supplementary description, consider whether the text in question can be persisted in the design. Alternatively, if it's important to display supplementary text that is hidden by default, consider using an **accessible** tooltip implementation that uses the `aria-labelledby` or `aria-describedby` semantics. Even so, proceed with caution: tooltips should only be used on interactive elements like links or buttons.
 
-### Should I use `title` attribute to provide accessible name for `<svg>`?
+### Should I use the `title` attribute to provide an accessible name for an `<svg>`?
 
 Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 
