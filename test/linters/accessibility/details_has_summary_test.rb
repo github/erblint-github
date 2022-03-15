@@ -27,4 +27,11 @@ class DetailsHasSummary < LinterTestCase
 
     assert_empty @linter.offenses
   end
+
+  def test_does_warns_if_details_has_a_summary_as_an_inner_child
+    @file = "<details><p><summary>Expand me!</summary></p><button>Surprise button!</button></details>"
+    @linter.run(processed_source)
+
+    assert_equal @linter.offenses.count, 1
+  end
 end
