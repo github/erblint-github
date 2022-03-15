@@ -13,12 +13,9 @@ module ERBLint
           MESSAGE = "<details> elements need to have explict <summary> elements"
 
           def run(processed_source)
-            tags(processed_source).each do |tag|
+            tags(processed_source).each_with_index do |tag, index|
               next if tag.closing?
               next unless tag.name == "details"
-
-              # Find the details element index in the AST
-              index = processed_source.ast.to_a.find_index(tag.node)
 
               # Get the next element in the AST
               next_node = processed_source.ast.to_a[index + 1]
