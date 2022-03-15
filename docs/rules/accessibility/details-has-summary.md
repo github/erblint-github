@@ -1,7 +1,7 @@
 # Details has summary
 
 ## Rule Details
-`<details>` should have a `<summary>` element hinting to the user what they'll be expanding by interfacing with the element. This is useful to screen reader users to navigate the website as well as a good UI pattern since omitting a `<summary>` element lets the user agent inject their own `<summary>` element that adds no context to the control.
+`<details>` should have a `<summary>` element hinting to the user what they'll be expanding by interfacing with the element. `<summary>` elements are helpful for screen reader users navigating the website. They are also a good UI pattern since a user agent adds their own `<summary>` if a developer omitted it with no context on what UI the details element will expand.
 
 ### 👎 Examples of **incorrect** code for this rule:
 
