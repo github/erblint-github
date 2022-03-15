@@ -20,7 +20,7 @@ class DetailsHasSummary < LinterTestCase
 
     assert_empty @linter.offenses
   end
-  
+
   def test_does_not_warn_if_details_has_a_summary
     @file = "<details><summary>Expand me!</summary><button>Surprise button!</button></details>"
     @linter.run(processed_source)

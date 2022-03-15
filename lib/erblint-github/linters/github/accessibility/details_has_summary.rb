@@ -17,9 +17,7 @@ module ERBLint
             has_summary = false
 
             tags(processed_source).each do |tag|
-              if tag.name == "summary" && !tag.closing?
-                has_summary = true
-              end
+              has_summary = true if tag.name == "summary" && !tag.closing?
 
               next if tag.name != "details"
 
