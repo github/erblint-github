@@ -16,7 +16,7 @@ module ERBLint
             current_details = nil
             has_summary = false
 
-            tags(processed_source).each_with_index do |tag, index|
+            tags(processed_source).each do |tag|
               if tag.name == "summary" && !tag.closing?
                 has_summary = true
               end
