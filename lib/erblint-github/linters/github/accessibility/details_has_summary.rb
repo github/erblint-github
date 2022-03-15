@@ -13,18 +13,22 @@ module ERBLint
           MESSAGE = "<details> elements need to have explict <summary> elements"
 
           def run(processed_source)
+            current_details = nil
+            has_summary = false
+
             tags(processed_source).each_with_index do |tag, index|
-              next if tag.closing?
-              next unless tag.name == "details"
+              if tag.name == "summary" && !tag.closing?
+                has_summary = true
+              end
 
-              # Get the next element in the AST
-              next_node = processed_source.ast.to_a[index + 1]
-              next_tag = BetterHtml::Tree::Tag.from_node(next_node)
+              next if tag.name != "details"
 
-              # If the next element is a summary, we're good
-              next if next_tag.name == "summary"
-
-              generate_offense(self.class, processed_source, tag)
+              if tag.closing? && !has_summary
+                generate_offense(self.class, processed_source, current_details)
+                current_details = nil
+              else
+                current_details = tag
+              end
             end
 
             rule_disabled?(processed_source)
