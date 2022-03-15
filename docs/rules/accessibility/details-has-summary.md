@@ -11,6 +11,13 @@
 </details>
 ```
 
+```erb
+<details>
+  <div><summary>Expand me!</summary></div>
+  I have a invalid summary tag! The summary tag needs to be a direct child of the details tag.
+</details>
+```
+
 ### 👍 Examples of **correct** code for this rule:
 
 ```erb
