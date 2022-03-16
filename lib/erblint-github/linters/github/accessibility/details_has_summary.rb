@@ -12,7 +12,7 @@ module ERBLint
           include ERBLint::Linters::TagTreeHelpers
           include LinterRegistry
 
-          MESSAGE = "<details> elements need to have explict <summary> elements"
+          MESSAGE = "<details> elements need to have explicit <summary> element"
 
           def run(processed_source)
             has_summary = false
