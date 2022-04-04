@@ -67,7 +67,7 @@ jobs:
       with:
         path: vendor/bundle
         key: gems-build-rails-main-ruby-2.7.x-${{ hashFiles('**/Gemfile.lock') }}
-    - name: Verify docs coverage
+    - name: Verify all rules have test coverage
       run: |
         gem install bundler:2.2.32
         bundle config path vendor/bundle
