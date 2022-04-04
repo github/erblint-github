@@ -11,7 +11,7 @@ class ImageHasAltTest < LinterTestCase
     @file = "<img></img>"
     @linter.run(processed_source)
 
-    refute_empty @linter.offenses
+    assert_empty @linter.offenses
   end
 
   def test_does_not_warn_if_image_has_alt_attribute_set_to_empty_string
