@@ -4,8 +4,12 @@
 
 `<img>` should have an alt prop with meaningful text or an empty string for decorative images.
 
-Learn more at [W3C WAI Images Tutorial](https://www.w3.org/WAI/tutorials/images/).
+## Resources
 
+- [W3C WAI Images Tutorial](https://www.w3.org/WAI/tutorials/images/)
+- [Primer: Alternative text for images](https://primer.style/design/accessibility/alternative-text-for-images)
+
+## Examples
 ### 👎 Examples of **incorrect** code for this rule:
 
 ```erb

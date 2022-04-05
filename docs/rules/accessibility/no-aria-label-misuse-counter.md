@@ -6,18 +6,15 @@ This rule aims to discourage common misuse of the `aria-label` and `aria-labelle
 
 ### "Help! I'm trying to set a tooltip on a static element and this rule flagged it!"
 
-Please do not use tooltips on static elements. It is a highly discouraged, inaccessible pattern for the following reasons:
-
-- Static elements are not tab-focusable so keyboard-only users will not be able to access the tooltip at all. (Note: setting `tabindex="0"` to force a generic element to be focusable is not a solution.)
-- It's likely that tooltip is inappropriate for your usecase to begin with. Tooltips are not accessible at all on mobile devices so if you're trying to convey critical information, use something else. Additionally, implementing tooltip as `aria-label` is rarely appropriate and has potential to cause accessibility issues for screen reader users.
-
-If you've determined the tooltip content is not critical, simply remove it. If you determine the tooltip content is important to keep, we encourage you to reach out to a design or accessibility team who can assist in finding an alternate, non-tooltip pattern.
+Please do not use tooltips on static elements. It is a highly discouraged, inaccessible pattern.
+See [Primer: Tooltip alternatives](https://primer.style/design/accessibility/tooltip-alternatives) for what to do instead.
 
 ### Resources
 
 - [w3c/aria Consider prohibiting author naming certain roles #833](https://github.com/w3c/aria/issues/833)
 - [Not so short note on aria-label usage - Big Table Edition](https://html5accessibility.com/stuff/2020/11/07/not-so-short-note-on-aria-label-usage-big-table-edition/)
 - [Your tooltips are bogus](https://heydonworks.com/article/your-tooltips-are-bogus/)
+- [Primer: Tooltip alternatives](https://primer.style/design/accessibility/tooltip-alternatives)
 
 ### Disclaimer
 

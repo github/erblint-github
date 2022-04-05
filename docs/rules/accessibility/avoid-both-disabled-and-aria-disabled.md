@@ -9,6 +9,7 @@ HTML elements with `disabled` are ignored when a screen reader uses tab navigati
 
 This linter will raise when both `aria-disabled` and `disabled` are set on HTML elements that natively support `disabled` including `button`, `fieldset`, `input`, `optgroup`, `option`, `select`, and `textarea`.
 
+## Examples
 ### 👎 Examples of **incorrect** code for this rule:
 
 ```erb

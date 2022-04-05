@@ -7,8 +7,12 @@
 This rule does not discourage conveying the _medium_ of the image which may be considered important to help a user better understand the content.
 For example, this rule will not flag terms including `screenshot`, `painting`, or `photograph`.
 
-Learn more at [W3C WAI Images Tutorial](https://www.w3.org/WAI/tutorials/images/).
+## Resources
 
+- [W3C WAI Images Tutorial](https://www.w3.org/WAI/tutorials/images/)
+- [Primer: Alternative text for images](https://primer.style/design/accessibility/alternative-text-for-images)
+
+## Examples
 ### 👎 Examples of **incorrect** code for this rule:
 
 ```erb
