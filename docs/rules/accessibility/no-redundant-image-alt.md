@@ -13,7 +13,7 @@ For example, this rule will not flag terms including `screenshot`, `painting`, o
 - [Primer: Alternative text for images](https://primer.style/design/accessibility/alternative-text-for-images)
 
 ## Examples
-### 👎 Examples of **incorrect** code for this rule:
+### **Incorrect** code for this rule 👎
 
 ```erb
 <img alt="picture of Mona Lisa" src="monalisa.png">
@@ -24,7 +24,7 @@ For example, this rule will not flag terms including `screenshot`, `painting`, o
 <img alt="image of a fluffy dog" src="monalisa.png">
 ```
 
-### 👍 Examples of **correct** code for this rule:
+### **Correct** code for this rule  👍
 
 ```erb
 <!-- good -->

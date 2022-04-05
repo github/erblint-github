@@ -20,7 +20,7 @@ See [Primer: Tooltip alternatives](https://primer.style/design/accessibility/too
 
 There are conflicting resources and opinions on what elements should support these naming attributes. For now, this rule will operate under a relatively simple heuristic aimed to minimize false positives. This may have room for future improvements. Learn more at [W3C Name Calcluation](https://w3c.github.io/aria/#namecalculation).
 
-### 👎 Examples of **incorrect** code for this rule:
+### **Incorrect** code for this rule 👎
 
 ```erb
 <span class="tooltipped" aria-label="This is a tooltip">I am some text.</span>
@@ -38,7 +38,7 @@ There are conflicting resources and opinions on what elements should support the
 <h1 aria-label="This will override the page title completely">Page title</h1>
 ```
 
-### 👍 Examples of **correct** code for this rule:
+### **Correct** code for this rule  👍
 
 ```erb
 <button aria-label="Close">

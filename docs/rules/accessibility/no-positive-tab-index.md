@@ -10,14 +10,14 @@ Learn more at:
 - [Deque: Avoid using Tabindex with positive numbers](https://dequeuniversity.com/tips/tabindex-positive-numbers)
 
 ## Examples
-### 👎 Examples of **incorrect** code for this rule:
+### **Incorrect** code for this rule 👎
 
 ```erb
 <button tabindex="3"></button>
 <button tabindex="1"></button>
 ```
 
-### 👍 Examples of **correct** code for this rule:
+### **Correct** code for this rule  👍
 
 ```erb
 <!-- good -->

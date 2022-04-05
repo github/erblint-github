@@ -10,13 +10,13 @@
 - [Primer: Alternative text for images](https://primer.style/design/accessibility/alternative-text-for-images)
 
 ## Examples
-### 👎 Examples of **incorrect** code for this rule:
+### **Incorrect** code for this rule 👎
 
 ```erb
 <img src="logo.png">
 ```
 
-### 👍 Examples of **correct** code for this rule:
+### **Correct** code for this rule  👍
 
 ```erb
 <!-- good -->
