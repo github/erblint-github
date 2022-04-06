@@ -12,12 +12,13 @@ If you are considering the`title` attribute to provide supplementary description
 
 Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 
-### Resources
+## Resources
 
 - [TPGI: Using the HTML title attribute ](https://www.tpgi.com/using-the-html-title-attribute/)
 - [The Trials and Tribulations of the Title Attribute](https://www.24a11y.com/2017/the-trials-and-tribulations-of-the-title-attribute/)
 
-### 👎 Examples of **incorrect** code for this rule:
+## Examples
+### **Incorrect** code for this rule 👎
 
 ```erb
 <a title="A home for all developers" href="github.com">GitHub</a>
@@ -27,7 +28,7 @@ Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 <a href="/" title="github.com">GitHub</a>
 ```
 
-### 👍 Examples of **correct** code for this rule:
+### **Correct** code for this rule  👍
 
 ```erb
 <a href="github.com" aria-describedby="description">GitHub</a>
