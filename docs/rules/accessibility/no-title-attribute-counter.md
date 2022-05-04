@@ -31,10 +31,14 @@ Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
 ### **Correct** code for this rule  👍
 
 ```erb
-<a href="github.com" aria-describedby="description">GitHub</a>
-<p id="description" class="tooltip js-tooltip">A home for all developers</p>
+<a href="github.com">GitHub</a>
 ```
 
+**For [Primer ViewComponent](https://primer.style/view-components/) consumers only**:
+
 ```erb
-<a href="github.com">GitHub</a>
+<%= render(Primer::LinkComponent.new(href: "github.com", id: "link-with-tooltip")) do |c| %>
+  <% c.tooltip(text: "A home for all developers") %>
+  GitHub
+<% end %>
 ```
