@@ -64,6 +64,13 @@ module ERBLint
         add_offense(processed_source.to_source_range(tag.loc), offense, replacement)
       end
 
+      def generate_offense_from_source_range(klass, source_range, message = nil, replacement = nil)
+        message ||= klass::MESSAGE
+        message += "\nLearn more at https://github.com/github/erblint-github#rules.\n"
+        offense = ["#{simple_class_name}:#{message}", source_range.source].join("\n")
+        add_offense(source_range, offense, replacement)
+      end
+
       def possible_attribute_values(tag, attr_name)
         value = tag.attributes[attr_name]&.value || nil
         basic_conditional_code_check(value || "") || [value].compact

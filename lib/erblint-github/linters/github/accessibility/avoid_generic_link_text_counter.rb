@@ -28,14 +28,17 @@ module ERBLint
                 prev_node = processed_source.ast.children[index-1]
                 next_node = processed_source.ast.children[index+1]
     
-                next unless tag?(prev_node) && tag?(next_node)
+                next unless tag_type?(prev_node) && tag_type?(next_node)
     
+                text_node_tag = BetterHtml::Tree::Tag.from_node(node)
                 prev_node_tag = BetterHtml::Tree::Tag.from_node(prev_node)
                 next_node_tag = BetterHtml::Tree::Tag.from_node(next_node)
 
                 # We only report if the text is nested between two link tags.
                 if link_tag?(prev_node_tag) && link_tag?(next_node_tag) && next_node_tag.closing?
-                  generate_offense(self.class, processed_source, prev_node_tag)
+                  range = prev_node_tag.loc.begin_pos...text_node_tag.loc.end_pos
+                  source_range = processed_source.to_source_range(range)
+                  generate_offense_from_source_range(self.class, source_range)
                 end
               end
     
@@ -90,7 +93,7 @@ module ERBLint
             tag_node.name == "a"
           end
 
-          def tag?(node)
+          def tag_type?(node)
             node.methods.include?(:type) && node.type == :tag
           end
         end
