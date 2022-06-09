@@ -15,7 +15,8 @@ module ERBLint
             "Learn more",
             "Click here",
             "More",
-            "Link"
+            "Link",
+            "Here"
           ].freeze
           MESSAGE = "Avoid using generic link text such as #{BANNED_GENERIC_TEXT.join(', ')} which do not make sense in isolation."
 
