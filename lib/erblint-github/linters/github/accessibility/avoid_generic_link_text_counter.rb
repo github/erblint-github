@@ -22,14 +22,15 @@ module ERBLint
           def run(processed_source)
             processed_source.ast.children.each_with_index do |node, index|
               next unless node.methods.include?(:type) && node.type == :text
+
               text = node.children.join.strip
               # Checks HTML tags
               if banned_text?(text)
-                prev_node = processed_source.ast.children[index-1]
-                next_node = processed_source.ast.children[index+1]
-    
+                prev_node = processed_source.ast.children[index - 1]
+                next_node = processed_source.ast.children[index + 1]
+
                 next unless tag_type?(prev_node) && tag_type?(next_node)
-    
+
                 text_node_tag = BetterHtml::Tree::Tag.from_node(node)
                 prev_node_tag = BetterHtml::Tree::Tag.from_node(prev_node)
                 next_node_tag = BetterHtml::Tree::Tag.from_node(next_node)
@@ -41,23 +42,22 @@ module ERBLint
                   generate_offense_from_source_range(self.class, source_range)
                 end
               end
-    
+
               # Checks Rails link helpers like `link_to`
               erb_node = node.type == :erb ? node : node.descendants(:erb).first
               next unless erb_node
+
               _, _, code_node = *erb_node
               source = code_node.loc.source
               ruby_node = extract_ruby_node(source)
               send_node = ruby_node&.descendants(:send)&.first
-              if send_node.methods.include?(:method_name) && send_node.method_name == :link_to
-                send_node.child_nodes.each do |child_node|
-                  if child_node.methods.include?(:type) && child_node.type == :str
-                    if banned_text?(child_node.children.join)
-                      tag = BetterHtml::Tree::Tag.from_node(code_node)
-                      generate_offense(self.class, processed_source, tag)
-                    end
+              next unless send_node.methods.include?(:method_name) && send_node.method_name == :link_to
+
+              send_node.child_nodes.each do |child_node|
+                if child_node.methods.include?(:type) && child_node.type == :str && banned_text?(child_node.children.join)
+                  tag = BetterHtml::Tree::Tag.from_node(code_node)
+                  generate_offense(self.class, processed_source, tag)
                   end
-                end
               end
             end
             counter_correct?(processed_source)
@@ -82,7 +82,7 @@ module ERBLint
           def banned_text?(text)
             BANNED_GENERIC_TEXT.map(&:downcase).include?(text.downcase)
           end
-    
+
           def extract_ruby_node(source)
             BetterHtml::TestHelper::RubyNode.parse(source)
           rescue ::Parser::SyntaxError
