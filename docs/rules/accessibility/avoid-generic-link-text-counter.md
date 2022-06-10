@@ -2,7 +2,14 @@
 
 ## Rule Details
 
-Avoid setting generic link text like, "Click here", "Read more", and "Learn more" which do not make sense when read out of context. Screen reader users often tab through links on a page to quickly find content without needing to listen to the full page. When link text is too generic, it becomes difficult to quickly identify the destination of the link.
+Avoid setting generic link text like, "Click here", "Read more", and "Learn more" which do not make sense when read out of context.
+
+Screen reader users often tab through links on a page to quickly find content without needing to listen to the full page. When link text is too generic, it becomes difficult to quickly identify the destination of the link. While it is possible to provide a more specific link text by setting the `aria-label`, this results in divergence between the label and the text and is not an ideal, future-proof solution.
+
+Additionally, generic link text can also problematic for heavy zoom users where the link context is out of view.
+
+Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text. 
+Learn more about how to write descriptive link text at [Access Guide: Write descriptive link text](https://www.accessguide.io/guide/descriptive-link-text)
 
 ## Resources
 
