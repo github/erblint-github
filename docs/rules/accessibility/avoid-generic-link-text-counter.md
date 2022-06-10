@@ -6,7 +6,7 @@ Avoid setting generic link text like, "Click here", "Read more", and "Learn more
 
 ## Resources
 
-- [Primer: Links](https://primer.style/design/accessibility/link)
+- [Primer: Links](https://primer.style/design/accessibility/links)
 - [Understanding Success Criterion 2.4.4: Link Purpose (In Context)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html)
 - [WebAim: Links and Hypertext](https://webaim.org/techniques/hypertext/)
 - [Deque: Use link text that make sense when read out of context](https://dequeuniversity.com/tips/link-text)
