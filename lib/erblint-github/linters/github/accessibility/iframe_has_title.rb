@@ -10,8 +10,8 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          MESSAGE = "<iframe> with meaningful content should have a title attribute that identifies the content."\
-                    " If <iframe> has no meaningful content, hide it from assistive technology with `aria-hidden='true'`."\
+          MESSAGE = "`<iframe>` with meaningful content should have a title attribute that identifies the content."\
+                    " If `<iframe>` has no meaningful content, hide it from assistive technology with `aria-hidden='true'`."\
 
           def run(processed_source)
             tags(processed_source).each do |tag|
