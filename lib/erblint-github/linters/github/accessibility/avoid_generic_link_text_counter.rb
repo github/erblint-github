@@ -25,6 +25,7 @@ module ERBLint
               next unless node.methods.include?(:type) && node.type == :text
 
               text = node.children.join.strip
+
               # Checks HTML tags
               if banned_text?(text)
                 prev_node = processed_source.ast.children[index - 1]
@@ -39,10 +40,12 @@ module ERBLint
                 aria_label = possible_attribute_values(prev_node_tag, "aria-label")
                 aria_labelledby = possible_attribute_values(prev_node_tag, "aria-labelledby")
 
-                # We only report if the text is nested between two link tags.
+                # Checks if nested between two link tags.
                 if link_tag?(prev_node_tag) && link_tag?(next_node_tag) && next_node_tag.closing?
-                  # Cannot statically check label from aria-labelledby or label from variable aria-label so we skip
+                  # We skip because we cannot reliably check accessible name given aria-labelledby, or an aria-label that is set to a variable
+                  # with static code analysis.
                   next if aria_labelledby.present? || (aria_label.present? && aria_label.join.include?("<%="))
+                  # We skip because aria-label contains visible text. Relates to Success Criterion 2.5.3: Label in Name
                   next if aria_label.present? && valid_accessible_name?(aria_label.join, text)
 
                   range = prev_node_tag.loc.begin_pos...text_node_tag.loc.end_pos
@@ -71,19 +74,16 @@ module ERBLint
                 child_node.descendants(:pair).each do |pair_node|
                   next unless pair_node.children.first.type?(:sym)
 
-                  # Don't flag if link has aria-labelledby which we cannot evaluate with ERB alone.
-                  banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
-                  next unless pair_node.children.first.children.join == "aria-label"
-
-                  aria_label_value_node = pair_node.children[1]
-                  if aria_label_value_node.type == :str
-                    binding.irb
-                    aria_label_text = aria_label_value_node.children.join
-                    banned_text = nil if valid_accessible_name?(aria_label_text, banned_text)
-                  else
-                    # Don't flag if aria-label is not string (e.g. is a variable) since we cannot evaluate with ERB alone.
-                    banned_text = nil
+                  if pair_node.children.first.children.join == "aria"
+                    pair_node.children[1].descendants(:sym).each do |sym_node|
+                      banned_text = nil if sym_node.children.join == "label" || sym_node.children.join == "labelledby"
+                    end
                   end
+
+                  # Skip if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
+                  # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
+                  # be `Learn` which is unreliable so we have to skip entirely unlike with HTML :(
+                  banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
                 end
               end
               if banned_text.present?
@@ -114,10 +114,13 @@ module ERBLint
             BANNED_GENERIC_TEXT.map(&:downcase).include?(text.downcase)
           end
 
-          # We flag if accessible name does not start with visible text.
-          # Related: Success Criteria 2.5.3
-          def valid_accessible_name?(accessible_name, visible_text)
-            accessible_name.downcase.start_with?(visible_text.downcase)
+          def valid_accessible_name?(aria_label, text)
+            aria_label.start_with?(text)
+          end
+
+          # Checks if Ruby node contains `aria-label` or `aria-labelledby`
+          def ruby_node_contains_aria_label_attributes?(pair_node)
+            pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
           end
 
           def extract_ruby_node(source)
