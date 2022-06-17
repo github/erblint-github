@@ -148,7 +148,9 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
   def test_handles_files_with_various_links
     @file = <<~ERB
       <p>
-        <a aria-labelledby='someElement'>Click here</a>
+        <a href="github.com" aria-label='Click here to learn more'>Click here</a>
+        <a href="github.com" aria-label='Some totally different text'>Click here</a>
+        <a href="github.com" aria-labelledby='someElement'>Click here</a>
       </p>
       <p>
         <%= link_to "learn more", billing_path, "aria-label": "something" %>
@@ -160,7 +162,8 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     @linter.run(processed_source)
 
     refute_empty @linter.offenses
-    assert_equal 3, @linter.offenses.count
+    # 3 offenses, 1 related to matching counter comment not present despite violations
+    assert_equal 4, @linter.offenses.count
   end
 
   def test_does_not_warns_if_element_has_correct_counter_comment

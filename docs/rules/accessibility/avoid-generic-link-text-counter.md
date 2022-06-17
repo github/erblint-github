@@ -11,6 +11,24 @@ Additionally, generic link text can also problematic for heavy zoom users where 
 Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text. 
 Learn more about how to write descriptive link text at [Access Guide: Write descriptive link text](https://www.accessguide.io/guide/descriptive-link-text)
 
+### Use of ARIA attributes
+
+It is acceptable to use `aria-label` or `aria-labelledby` to provide a more descriptive text in some cases. As note above, this is not the preferred solution and one should strive to make the visible text to be as descriptive as the design allows.
+
+If you _must_ use this technique, you need to ensure that the accessible name completely contains the visible text. Otherwise, this is a failure of [SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+This is not acceptable:
+```
+<a href="..." aria-label="GitHub announces something">Read more</a>
+```
+
+This is acceptable:
+```
+<a href="..." aria-label="Read more about the new accesibility feature">Read more</a>
+```
+
+This linter will raise a flag when it is able to detect that a generic link has an accessible name that doesn't contain the visible text. Due to the restrictions of static code analysis, this may not catch all violations so it is important to supplement this check with other techniques like browser tests. For instance, ERB lint will not be able to evaluate the accessible name set by `aria-labelledby` or when a variable is set to `aria-label` since this requires runtime evaluation.
+
 ## Resources
 
 - [Primer: Links](https://primer.style/design/accessibility/links)
@@ -43,6 +61,11 @@ Learn more about how to write descriptive link text at [Access Guide: Write desc
 <%= link_to "Learn more", "#" %>
 ```
 
+```erb
+<!-- also bad -->
+<a href="github.com/about" aria-label="Why dogs are awesome">Read more</a>
+```
+
 ### **Correct** code for this rule  👍
 
 ```erb
@@ -51,4 +74,9 @@ Learn more about how to write descriptive link text at [Access Guide: Write desc
 
 ```erb
 <a href="github.com/new">Create a new repository</a>
+```
+
+```erb
+<!-- not ideal but won't be flagged -->
+<a aria-label="Learn more about GitHub" href="github.com/about">Learn more</a>
 ```
