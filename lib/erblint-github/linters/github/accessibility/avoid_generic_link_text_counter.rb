@@ -55,41 +55,41 @@ module ERBLint
               end
 
               # Checks Rails link helpers like `link_to`
-              erb_node = node.type == :erb ? node : node.descendants(:erb).first
-              next unless erb_node
+              node.descendants(:erb).each do |erb_node|
+                _, _, code_node = *erb_node
+                source = code_node.loc.source
+                ruby_node = extract_ruby_node(source)
+                send_node = ruby_node&.descendants(:send)&.first
+                next unless send_node.methods.include?(:method_name) && send_node.method_name == :link_to
 
-              _, _, code_node = *erb_node
-              source = code_node.loc.source
-              ruby_node = extract_ruby_node(source)
-              send_node = ruby_node&.descendants(:send)&.first
-              next unless send_node.methods.include?(:method_name) && send_node.method_name == :link_to
+                banned_text = nil
 
-              banned_text = nil
+                send_node.child_nodes.each do |child_node|
+                  banned_text = child_node.children.join if child_node.methods.include?(:type) && child_node.type == :str && banned_text?(child_node.children.join)
+                  next if banned_text.blank?
 
-              send_node.child_nodes.each do |child_node|
-                banned_text = child_node.children.join if child_node.methods.include?(:type) && child_node.type == :str && banned_text?(child_node.children.join)
-                next if banned_text.blank?
+                  next unless child_node.methods.include?(:type) && child_node.type == :hash
 
-                next unless child_node.methods.include?(:type) && child_node.type == :hash
+                  child_node.descendants(:pair).each do |pair_node|
+                    next unless pair_node.children.first.type?(:sym)
 
-                child_node.descendants(:pair).each do |pair_node|
-                  next unless pair_node.children.first.type?(:sym)
-
-                  if pair_node.children.first.children.join == "aria"
-                    pair_node.children[1].descendants(:sym).each do |sym_node|
-                      banned_text = nil if sym_node.children.join == "label" || sym_node.children.join == "labelledby"
+                    if pair_node.children.first.children.join == "aria"
+                      pair_node.children[1].descendants(:sym).each do |sym_node|
+                        banned_text = nil if sym_node.children.join == "label" || sym_node.children.join == "labelledby"
+                      end
                     end
-                  end
 
-                  # Skips if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
-                  # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
-                  # only be `Learn` which is unreliable so we can't do checks :(
-                  banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
+                    # Skips if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
+                    # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
+                    # only be `Learn` which is unreliable so we can't do checks :(
+                    banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
+                  end
                 end
-              end
-              if banned_text.present?
-                tag = BetterHtml::Tree::Tag.from_node(code_node)
-                generate_offense(self.class, processed_source, tag)
+                if banned_text.present?
+                  tag = BetterHtml::Tree::Tag.from_node(code_node)
+                  generate_offense(self.class, processed_source, tag)
+                end
+                banned_text = nil
               end
             end
             counter_correct?(processed_source)

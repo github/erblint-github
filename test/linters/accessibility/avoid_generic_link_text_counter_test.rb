@@ -145,6 +145,24 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     assert_empty @linter.offenses
   end
 
+  def test_handles_files_with_various_links
+    @file = <<~ERB
+      <p>
+        <a aria-labelledby='someElement'>Click here</a>
+      </p>
+      <p>
+        <%= link_to "learn more", billing_path, "aria-label": "something" %>
+        <%= link_to "learn more", billing_path, aria: { label: "something" } %>
+        <%= link_to "learn more", billing_path, aria: { describedby: "element123" } %>
+        <%= link_to "learn more", billing_path, "aria-describedby": "element123" %>
+      </p>
+    ERB
+    @linter.run(processed_source)
+
+    refute_empty @linter.offenses
+    assert_equal 3, @linter.offenses.count
+  end
+
   def test_does_not_warns_if_element_has_correct_counter_comment
     @file = <<~ERB
       <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 1 %>
