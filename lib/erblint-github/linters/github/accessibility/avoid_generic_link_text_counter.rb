@@ -68,8 +68,9 @@ module ERBLint
 
               send_node.child_nodes.each do |child_node|
                 banned_text = child_node.children.join if child_node.methods.include?(:type) && child_node.type == :str && banned_text?(child_node.children.join)
+                next if banned_text.blank?
 
-                next unless banned_text.present? && child_node.methods.include?(:type) && child_node.type == :hash
+                next unless child_node.methods.include?(:type) && child_node.type == :hash
 
                 child_node.descendants(:pair).each do |pair_node|
                   next unless pair_node.children.first.type?(:sym)
@@ -82,7 +83,7 @@ module ERBLint
 
                   # Skip if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
                   # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
-                  # be `Learn` which is unreliable so we have to skip entirely unlike with HTML :(
+                  # only be `Learn` which is unreliable so we can't do checks :(
                   banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
                 end
               end

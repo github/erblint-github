@@ -90,6 +90,15 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     refute_empty @linter.offenses
   end
 
+  def test_warns_when_link_rails_helper_text_is_banned_text_with_aria_description
+    @file = <<~ERB
+      <%= link_to('click here', 'aria-describedby': 'element123', id: 'redirect') %>
+    ERB
+    @linter.run(processed_source)
+
+    refute_empty @linter.offenses
+  end
+
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_labelled_by
     @file = "<%= link_to('learn more', 'aria-labelledby': 'element1234', id: 'redirect') %>"
     @linter.run(processed_source)
