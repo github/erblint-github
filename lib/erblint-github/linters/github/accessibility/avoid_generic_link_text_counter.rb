@@ -42,10 +42,10 @@ module ERBLint
 
                 # Checks if nested between two link tags.
                 if link_tag?(prev_node_tag) && link_tag?(next_node_tag) && next_node_tag.closing?
-                  # We skip because we cannot reliably check accessible name given aria-labelledby, or an aria-label that is set to a variable
+                  # Skip because we cannot reliably check accessible name from aria-labelledby, or an aria-label that is set to a variable
                   # with static code analysis.
                   next if aria_labelledby.present? || (aria_label.present? && aria_label.join.include?("<%="))
-                  # We skip because aria-label contains visible text. Relates to Success Criterion 2.5.3: Label in Name
+                  # Skip because aria-label starts with visible text which we allow. Related to Success Criterion 2.5.3: Label in Name
                   next if aria_label.present? && valid_accessible_name?(aria_label.join, text)
 
                   range = prev_node_tag.loc.begin_pos...text_node_tag.loc.end_pos
@@ -81,7 +81,7 @@ module ERBLint
                     end
                   end
 
-                  # Skip if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
+                  # Skips if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
                   # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
                   # only be `Learn` which is unreliable so we can't do checks :(
                   banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"

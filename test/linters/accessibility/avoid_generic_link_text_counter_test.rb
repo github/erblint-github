@@ -84,7 +84,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
   end
 
   def test_warns_when_link_rails_helper_text_is_banned_text
-    @file = "<%= link_to('click here', redirect_url, id: 'redirect') %>"
+    @file = "<%= link_to('click here', redirect_url) %>"
     @linter.run(processed_source)
 
     refute_empty @linter.offenses
@@ -92,7 +92,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
 
   def test_warns_when_link_rails_helper_text_is_banned_text_with_aria_description
     @file = <<~ERB
-      <%= link_to('click here', 'aria-describedby': 'element123', id: 'redirect') %>
+      <%= link_to('click here', redirect_url, 'aria-describedby': 'element123', id: 'redirect') %>
     ERB
     @linter.run(processed_source)
 
@@ -100,7 +100,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
   end
 
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_labelled_by
-    @file = "<%= link_to('learn more', 'aria-labelledby': 'element1234', id: 'redirect') %>"
+    @file = "<%= link_to('learn more', redirect_url, 'aria-labelledby': 'element1234', id: 'redirect') %>"
     @linter.run(processed_source)
 
     assert_empty @linter.offenses
@@ -108,7 +108,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
 
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_label_that_cannot_be_parsed_by_linter
     @file = <<~ERB
-      <%= link_to('learn more', 'aria-label': some_variable, id: 'redirect') %>
+      <%= link_to('learn more', redirect_url, 'aria-label': some_variable, id: 'redirect') %>
     ERB
     @linter.run(processed_source)
 
@@ -117,7 +117,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
 
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_label_since_cannot_be_parsed_accurately_by_linter
     @file = <<~ERB
-      <%= link_to('learn more', 'aria-label': "Learn #{@variable}", id: 'redirect') %>
+      <%= link_to('learn more', redirect_url, 'aria-label': "Learn #{@variable}", id: 'redirect') %>
     ERB
     @linter.run(processed_source)
 
@@ -125,14 +125,14 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
   end
 
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_label
-    @file = "<%= link_to('learn more', 'aria-label': 'learn more about GitHub', id: 'redirect') %>"
+    @file = "<%= link_to('learn more', redirect_url, 'aria-label': 'learn more about GitHub', id: 'redirect') %>"
     @linter.run(processed_source)
 
     assert_empty @linter.offenses
   end
 
   def test_ignores_when_link_rails_helper_text_is_banned_text_with_aria_label_hash
-    @file = "<%= link_to('learn more', aria: { label: 'learn more about GitHub' }, id: 'redirect') %>"
+    @file = "<%= link_to('learn more', redirect_url, aria: { label: 'learn more about GitHub' }, id: 'redirect') %>"
     @linter.run(processed_source)
 
     assert_empty @linter.offenses
