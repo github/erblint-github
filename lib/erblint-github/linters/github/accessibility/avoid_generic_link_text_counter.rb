@@ -116,7 +116,7 @@ module ERBLint
           end
 
           def valid_accessible_name?(aria_label, text)
-            aria_label.start_with?(text)
+            aria_label.downcase.include?(text.downcase)
           end
 
           # Checks if Ruby node contains `aria-label` or `aria-labelledby`
