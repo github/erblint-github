@@ -66,6 +66,11 @@ This linter will raise a flag when it is able to detect that a generic link has 
 <a href="github.com/about" aria-label="Why dogs are awesome">Read more</a>
 ```
 
+```erb
+<!-- also bad. `aria-describedby` does not count towards accessible name of an element-->
+<a href="github.com/about" aria-describedby="element123">Read more</a>
+```
+
 ### **Correct** code for this rule  👍
 
 ```erb

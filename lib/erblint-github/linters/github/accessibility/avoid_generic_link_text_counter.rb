@@ -18,6 +18,8 @@ module ERBLint
             "Link",
             "Here"
           ].freeze
+          ARIA_LABEL_ATTRIBUTES = %w[aria-labelledby aria-label].freeze
+
           MESSAGE = "Avoid using generic link text such as #{BANNED_GENERIC_TEXT.join(', ')} which do not make sense in isolation."
 
           def run(processed_source)
@@ -67,22 +69,21 @@ module ERBLint
                 send_node.child_nodes.each do |child_node|
                   banned_text = child_node.children.join if child_node.methods.include?(:type) && child_node.type == :str && banned_text?(child_node.children.join)
                   next if banned_text.blank?
-
                   next unless child_node.methods.include?(:type) && child_node.type == :hash
 
                   child_node.descendants(:pair).each do |pair_node|
                     next unless pair_node.children.first.type?(:sym)
 
-                    if pair_node.children.first.children.join == "aria"
-                      pair_node.children[1].descendants(:sym).each do |sym_node|
-                        banned_text = nil if sym_node.children.join == "label" || sym_node.children.join == "labelledby"
-                      end
-                    end
-
-                    # Skips if `link_to` has `aria-labelledby` or `aria-label` which we cannot be evaluated accurately with ERB lint alone.
+                    # Skips if `link_to` has `aria-labelledby` or `aria-label` which cannot be evaluated accurately with ERB lint alone.
                     # ERB lint removes Ruby string interpolation so the `aria-label` for "<%= link_to 'Learn more', "aria-label": "Learn #{@some_variable}" %>" will
                     # only be `Learn` which is unreliable so we can't do checks :(
-                    banned_text = nil if pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
+                    key_value = pair_node.children.first.children.join
+                    banned_text = nil if ARIA_LABEL_ATTRIBUTES.include?(key_value)
+                    next unless key_value == "aria"
+
+                    pair_node.children[1].descendants(:sym).each do |sym_node|
+                      banned_text = nil if sym_node.children.join == "label" || sym_node.children.join == "labelledby"
+                    end
                   end
                 end
                 if banned_text.present?
@@ -117,11 +118,6 @@ module ERBLint
 
           def valid_accessible_name?(aria_label, text)
             aria_label.downcase.include?(text.downcase)
-          end
-
-          # Checks if Ruby node contains `aria-label` or `aria-labelledby`
-          def ruby_node_contains_aria_label_attributes?(pair_node)
-            pair_node.children.first.children.join == "aria-labelledby" || pair_node.children.first.children.join == "aria-label"
           end
 
           def extract_ruby_node(source)

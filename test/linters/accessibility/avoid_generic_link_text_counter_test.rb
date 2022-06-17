@@ -178,14 +178,33 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
 
   def test_autocorrects_when_ignores_are_not_correct
     @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 2 %>
-      <a>Link</a>
+      <p>
+        <a href="github.com" aria-label='Click here to learn more'>Click here</a>
+        <a href="github.com" aria-label='Some totally different text'>Click here</a>
+        <a href="github.com" aria-labelledby='someElement'>Click here</a>
+      </p>
+      <p>
+        <%= link_to "learn more", billing_path, "aria-label": "something" %>
+        <%= link_to "learn more", billing_path, aria: { label: "something" } %>
+        <%= link_to "learn more", billing_path, aria: { describedby: "element123" } %>
+        <%= link_to "learn more", billing_path, "aria-describedby": "element123" %>
+      </p>
     ERB
     refute_equal @file, corrected_content
 
     expected_content = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 1 %>
-      <a>Link</a>
+      <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 3 %>
+      <p>
+        <a href="github.com" aria-label='Click here to learn more'>Click here</a>
+        <a href="github.com" aria-label='Some totally different text'>Click here</a>
+        <a href="github.com" aria-labelledby='someElement'>Click here</a>
+      </p>
+      <p>
+        <%= link_to "learn more", billing_path, "aria-label": "something" %>
+        <%= link_to "learn more", billing_path, aria: { label: "something" } %>
+        <%= link_to "learn more", billing_path, aria: { describedby: "element123" } %>
+        <%= link_to "learn more", billing_path, "aria-describedby": "element123" %>
+      </p>
     ERB
     assert_equal expected_content, corrected_content
   end
