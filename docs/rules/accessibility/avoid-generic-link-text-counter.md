@@ -11,6 +11,34 @@ Additionally, generic link text can also problematic for heavy zoom users where 
 Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text. 
 Learn more about how to write descriptive link text at [Access Guide: Write descriptive link text](https://www.accessguide.io/guide/descriptive-link-text)
 
+### Use of ARIA attributes
+
+If you _must_ use ARIA to replace the visible link text, include the visible text at the beginning.
+
+For example, on a pricing plans page, the following are good:
+- Visible text: `Learn more`
+- Accessible label: `Learn more about GitHub pricing plans`
+
+Accessible ✅
+```html
+<a href="..." aria-label="Learn more about GitHub pricing plans">Learn more</a>
+```
+
+Inaccessible 🚫
+```html
+<a href="..." aria-label="GitHub pricing plans">Learn more</a>
+```
+
+Including the visible text in the ARIA label satisfies [SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+#### False negatives
+
+Caution: because of the restrictions of static code analysis, we may not catch all violations.
+
+Please perform browser tests and spot checks:
+- when `aria-label` is set dynamically
+- when using `aria-labelledby`
+
 ## Resources
 
 - [Primer: Links](https://primer.style/design/accessibility/links)
@@ -43,6 +71,16 @@ Learn more about how to write descriptive link text at [Access Guide: Write desc
 <%= link_to "Learn more", "#" %>
 ```
 
+```erb
+<!-- also bad -->
+<a href="github.com/about" aria-label="Why dogs are awesome">Read more</a>
+```
+
+```erb
+<!-- also bad. `aria-describedby` does not count towards accessible name of an element-->
+<a href="github.com/about" aria-describedby="element123">Read more</a>
+```
+
 ### **Correct** code for this rule  👍
 
 ```erb
@@ -51,4 +89,9 @@ Learn more about how to write descriptive link text at [Access Guide: Write desc
 
 ```erb
 <a href="github.com/new">Create a new repository</a>
+```
+
+```erb
+<!-- not ideal but won't be flagged -->
+<a aria-label="Learn more about GitHub" href="github.com/about">Learn more</a>
 ```
