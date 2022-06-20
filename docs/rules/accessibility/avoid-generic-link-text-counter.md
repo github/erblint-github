@@ -11,6 +11,8 @@ Additionally, generic link text can also problematic for heavy zoom users where 
 Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text. 
 Learn more about how to write descriptive link text at [Access Guide: Write descriptive link text](https://www.accessguide.io/guide/descriptive-link-text)
 
+### Use of ARIA attributes
+
 If you _must_ use ARIA to replace the visible link text, include the visible text at the beginning.
 
 For example, on a pricing plans page, the following are good:
