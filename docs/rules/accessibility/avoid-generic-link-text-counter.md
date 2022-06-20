@@ -11,23 +11,31 @@ Additionally, generic link text can also problematic for heavy zoom users where 
 Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text. 
 Learn more about how to write descriptive link text at [Access Guide: Write descriptive link text](https://www.accessguide.io/guide/descriptive-link-text)
 
-### Use of ARIA attributes
+If you _must_ use ARIA to replace the visible link text, include the visible text at the beginning.
 
-It is acceptable to use `aria-label` or `aria-labelledby` to provide a more descriptive text in some cases. As note above, this is not the preferred solution and one should strive to make the visible text to be as descriptive as the design allows.
+For example, on a pricing plans page, the following are good:
+- Visible text: `Learn more`
+- Accessible label: `Learn more about GitHub pricing plans`
 
-If you _must_ use this technique, you need to ensure that the accessible name completely contains the visible text. Otherwise, this is a failure of [SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
-
-This is not acceptable:
-```
-<a href="..." aria-label="GitHub announces something">Read more</a>
-```
-
-This is acceptable:
-```
-<a href="..." aria-label="Read more about the new accesibility feature">Read more</a>
+Accessible ✅
+```html
+<a href="..." aria-label="Learn more about GitHub pricing plans">Learn more</a>
 ```
 
-This linter will raise a flag when it is able to detect that a generic link has an accessible name that doesn't contain the visible text. Due to the restrictions of static code analysis, this may not catch all violations so it is important to supplement this check with other techniques like browser tests. For instance, ERB lint will not be able to evaluate the accessible name set by `aria-labelledby` or when a variable is set to `aria-label` since this requires runtime evaluation.
+Inaccessible 🚫
+```html
+<a href="..." aria-label="GitHub pricing plans">Learn more</a>
+```
+
+Including the visible text in the ARIA label satisfies [SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+#### False negatives
+
+Caution: because of the restrictions of static code analysis, we may not catch all violations.
+
+Please perform browser tests and spot checks:
+- when `aria-label` is set dynamically
+- when using `aria-labelledby`
 
 ## Resources
 
