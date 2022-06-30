@@ -113,7 +113,7 @@ module ERBLint
           private
 
           def banned_text?(text)
-            BANNED_GENERIC_TEXT.map(&:downcase).include?(text.downcase.gsub(/\W+/, ' ').strip)
+            BANNED_GENERIC_TEXT.map(&:downcase).include?(text.downcase.gsub(/\W+/, " ").strip)
           end
 
           def valid_accessible_name?(aria_label, text)
