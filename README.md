@@ -25,6 +25,8 @@ require "erblint-github/linters"
 linters:
   GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
     enabled: true
+  GitHub::Accessibility::AvoidGenericLinkTextCounter:
+    enabled: true
   GitHub::Accessibility::IframeHasTitle:
     enabled: true
   GitHub::Accessibility::ImageHasAlt:
