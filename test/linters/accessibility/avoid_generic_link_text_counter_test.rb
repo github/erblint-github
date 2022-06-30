@@ -42,6 +42,19 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     refute_empty @linter.offenses
   end
 
+  def test_warns_when_link_text_is_banned_text_with_punctuation_and_space
+    @file = <<~ERB
+      <a>Learn more!</a>
+      <a>   read more.</a>
+      <a>click  here.</a>
+    ERB
+    @linter.run(processed_source)
+
+    refute_empty @linter.offenses
+    # 3 offenses, 1 related to matching counter comment not present despite violations
+    assert_equal 4, @linter.offenses.count
+  end
+
   def test_does_not_warn_when_banned_text_is_part_of_more_text
     @file = "<a>Learn more about GitHub Stars</a>"
     @linter.run(processed_source)
