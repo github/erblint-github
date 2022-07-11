@@ -122,7 +122,7 @@ module ERBLint
           end
 
           def valid_accessible_name?(aria_label, text)
-            aria_label.downcase.include?(stripped_text(text))
+            stripped_text(aria_label).include?(stripped_text(text))
           end
 
           def extract_ruby_node(source)
