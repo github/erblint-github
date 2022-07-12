@@ -112,12 +112,17 @@ module ERBLint
 
           private
 
+          # Downcase and strip punctuation and extra whitespaces.
+          def stripped_text(text)
+            text.downcase.gsub(/\W+/, " ").strip
+          end
+
           def banned_text?(text)
-            BANNED_GENERIC_TEXT.map(&:downcase).include?(text.downcase.gsub(/\W+/, " ").strip)
+            BANNED_GENERIC_TEXT.map(&:downcase).include?(stripped_text(text))
           end
 
           def valid_accessible_name?(aria_label, text)
-            aria_label.downcase.include?(text.downcase)
+            stripped_text(aria_label).include?(stripped_text(text))
           end
 
           def extract_ruby_node(source)

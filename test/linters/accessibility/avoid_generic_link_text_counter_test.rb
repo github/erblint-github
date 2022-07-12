@@ -82,7 +82,8 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
 
   def test_does_not_flag_when_aria_label_includes_visible_link_text
     @file = <<~ERB
-      <a aria-label="Learn more about GitHub Sponsors">Learn more</a>
+      <a aria-label="Learn more about GitHub Sponsors.">Learn more.</a>
+      <a aria-label="Learn more about GitHub Sponsors.">Learn more  </a>
     ERB
     @linter.run(processed_source)
 
