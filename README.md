@@ -51,6 +51,7 @@ linters:
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
 - [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
+- [GitHub::Accessibility::DetailsHasSummary](./docs/rules/accessibility/details-has-summary.md)
 
 ## Testing
 
