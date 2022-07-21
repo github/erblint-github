@@ -27,6 +27,8 @@ linters:
     enabled: true
   GitHub::Accessibility::AvoidGenericLinkTextCounter:
     enabled: true
+  GitHub::Accessibility::DisabledAttributeCounter:
+    enabled: true
   GitHub::Accessibility::IframeHasTitle:
     enabled: true
   GitHub::Accessibility::ImageHasAlt:
@@ -45,6 +47,7 @@ linters:
 
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
+- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter-test)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 - [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse-counter.md)
