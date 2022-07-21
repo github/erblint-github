@@ -31,7 +31,7 @@ linters:
     enabled: true
   GitHub::Accessibility::ImageHasAlt:
     enabled: true
-  GitHub::Accessibility::LinkHasHref:
+  GitHub::Accessibility::LinkHasHrefCounter:
     enabled: true
   GitHub::Accessibility::NoAriaLabelMisuseCounter:
     enabled: true
@@ -49,7 +49,7 @@ linters:
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
-- [GitHub::Accessibility::LinkHasHref](./docs/rules/accessibility/link_has_href.md)
+- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link_has_href-counter.md)
 - [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse-counter.md)
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
