@@ -43,6 +43,8 @@ linters:
     enabled: true
   GitHub::Accessibility::NoTitleAttributeCounter:
     enabled: true
+  GitHub::Accessibility::SvgHasAccessibleTextCounter:
+    enabled: true
 ```
 
 ## Rules
@@ -57,6 +59,7 @@ linters:
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
 - [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
+- [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg_has_accessible_text_counter.md)
 
 ## Testing
 
