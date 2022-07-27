@@ -33,6 +33,8 @@ linters:
     enabled: true
   GitHub::Accessibility::ImageHasAlt:
     enabled: true
+  GitHub::Accessibility::LandmarkHasLabelCounter:
+    enabled: true
   GitHub::Accessibility::LinkHasHrefCounter:
     enabled: true
   GitHub::Accessibility::NestedInteractiveElementsCounter:
@@ -55,6 +57,7 @@ linters:
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
 - [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter-test)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
+- [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label-counter.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 - [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href-counter.md)
 - [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
