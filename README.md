@@ -35,8 +35,6 @@ linters:
     enabled: true
   GitHub::Accessibility::LinkHasHrefCounter:
     enabled: true
-  GitHub::Accessibility::NestedInteractiveElementsCounter:
-    enabled: true
   GitHub::Accessibility::NoAriaLabelMisuseCounter:
     enabled: true
   GitHub::Accessibility::NoPositiveTabIndex:
@@ -56,13 +54,12 @@ linters:
 - [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter-test)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
-- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href-counter.md)
-- [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
+- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link_has_href-counter.md)
 - [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse-counter.md)
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
 - [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
-- [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg-has-accessible-text-counter.md)
+- [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg_has_accessible_text_counter.md)
 
 ## Testing
 
