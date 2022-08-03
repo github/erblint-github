@@ -10,7 +10,24 @@ If you are considering the`title` attribute to provide supplementary description
 
 ### Should I use the `title` attribute to provide an accessible name for an `<svg>`?
 
-Use a `<title>` element instead of the `title` attribute, or an `aria-label`.
+To label a _simple_ SVG that is purely graphical, we recommend the following technique for greatest assistive technology support:
+
+- Set `role="img"` on the SVG
+- Set the first child of the SVG to a `title` element that provides the accessible name for the SVG.
+- Re-inforce that the `title` is the accessible name for the SVG by associating it with an `aria-labelledby` on the SVG.
+
+Example:
+
+```.html
+<svg role="img" aria-labelledby="titleText">
+  <title id="titleText">Online</title>
+  ...
+</svg>
+```
+
+Alternatively, if you do not care to have the mouse hover tooltip you could provide an `aria-label` to the SVG instead of a `title` element. 
+
+If you are dealing with complex, interactive SVGs, please consult your accessibility team.
 
 ## Resources
 
