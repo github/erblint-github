@@ -25,7 +25,7 @@ Example:
 </svg>
 ```
 
-Alternatively, if you do not care to have the mouse hover tooltip you could provide an `aria-label` to the SVG instead of a `title` element. 
+Alternatively, if you do not care to have the native browser tooltip that is only accessible by mouse, you can use `aria-label` to label the SVG instead of `title`.
 
 If you are dealing with complex, interactive SVGs, please consult your accessibility team.
 
