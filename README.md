@@ -55,7 +55,7 @@ linters:
 
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
-- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter-test)
+- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter.md)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
 - [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label-counter.md)
 - [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
