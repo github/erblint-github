@@ -67,6 +67,34 @@ linters:
 - [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
 - [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg-has-accessible-text-counter.md)
 
+## Disabling a rule (experimental)
+
+_This is an experimental feature which should ideally be upstreamed to erblint_
+
+`erblint` does not natively support rule disables. At GitHub, we've implemented these rules in a way to allow rules to be disabled at an offense-level via counters or disabled at a file-level because often times, we want to enable a rule but aren't able to address all offenses at once. We achieve this in one of two ways.
+
+Rules that are marked as `Counter` can be disabled by adding a comment with the offense count that matches the number of offenses within the file like:
+
+```.html.erb
+<%# erblint:counter GitHub::Accessibility::LinkHasHrefCounter 1 %>
+```
+
+In this comment example, when a new `LinkHasHrefCounter` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
+
+If you are enabling a rule for the first time and your codebase has a lot of offenses, you can use the `-a` command to automatically add these counter comments in the appropriate places.
+
+```
+bundle exec erblint app/views app/components -a
+```
+
+Rules that are not marked as `Counter` like `NoRedundantImageAlt` are considered to be legacy format. We are in the process of migrating these to counters. These rules can still be disabled at the file-level by adding this comment at the top of the file:
+
+```.html.erb
+<%# erblint:disable GitHub::Accessibility::NoRedundantImageAlt %>
+```
+
+However, unlike a counter, any subsequent offenses introduced to the file will not raise. 
+
 ## Testing
 
 ```
