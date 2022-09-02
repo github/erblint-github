@@ -55,17 +55,12 @@ linters:
 
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled-counter.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
-<<<<<<< HEAD
 - [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter.md)
-- [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
 - [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label-counter.md)
-- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
 - [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href-counter.md)
 - [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
-=======
 - [GitHub::Accessibility::IframeHasTitleCounter](./docs/rules/accessibility/iframe-has-title-counter.md)
 - [GitHub::Accessibility::ImageHasAltCounter](./docs/rules/accessibility/image-has-alt-counter.md)
->>>>>>> 3ac20b8 (Migrate remaining rules to counters)
 - [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse-counter.md)
 - [GitHub::Accessibility::NoPositiveTabIndexCounter](./docs/rules/accessibility/no-positive-tab-index-counter.md)
 - [GitHub::Accessibility::NoRedundantImageAltCounter](./docs/rules/accessibility/no-redundant-image-alt-counter.md)
