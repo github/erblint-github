@@ -4,7 +4,7 @@ require "test_helper"
 
 class AvoidBothDisabledAndAriaDisabled < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled
+    ERBLint::Linters::GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter
   end
 
   ELEMENTS_WITH_NATIVE_DISABLED_ATTRIBUTE_SUPPORT = %w[button fieldset input optgroup option select textarea].freeze
@@ -15,7 +15,7 @@ class AvoidBothDisabledAndAriaDisabled < LinterTestCase
     end.join
     @linter.run(processed_source)
 
-    assert_equal @linter.offenses.count, 7
+    assert_equal @linter.offenses.count, 8
   end
 
   def test_does_not_warn_if_only_disabled_attribute_is_set

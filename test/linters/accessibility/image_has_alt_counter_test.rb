@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class ImageHasAltTest < LinterTestCase
+class ImageHasAltCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::ImageHasAlt
+    ERBLint::Linters::GitHub::Accessibility::ImageHasAltCounter
   end
 
   def test_warns_if_image_has_no_alt_attribute

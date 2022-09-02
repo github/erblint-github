@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class NoPositiveTabIndexTest < LinterTestCase
+class NoPositiveTabIndexCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::NoPositiveTabIndex
+    ERBLint::Linters::GitHub::Accessibility::NoPositiveTabIndexCounter
   end
 
   def test_warns_if_positive_tabindex_is_used

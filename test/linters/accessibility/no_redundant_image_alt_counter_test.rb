@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class NoRedundantImageAltTest < LinterTestCase
+class NoRedundantImageAltCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::NoRedundantImageAlt
+    ERBLint::Linters::GitHub::Accessibility::NoRedundantImageAltCounter
   end
 
   def test_warns_if_alt_contains_image
@@ -29,10 +29,10 @@ class NoRedundantImageAltTest < LinterTestCase
   end
 
   def test_does_not_warn_if_linter_is_disabled_in_file
-    @file = <<~HTML
-      <%# erblint:disable GitHub::Accessibility::NoRedundantImageAlt %>
+    @file = <<~ERB
+      <%# erblint:counter GitHub::Accessibility::NoRedundantImageAltCounter 1 %>
       <img alt='image of an octopus'></img>
-    HTML
+    ERB
 
     @linter.run(processed_source)
     assert_empty @linter.offenses

@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class IframeHasTitle < LinterTestCase
+class IframeHasTitleCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::IframeHasTitle
+    ERBLint::Linters::GitHub::Accessibility::IframeHasTitleCounter
   end
 
   def test_warns_if_iframe_has_no_title
