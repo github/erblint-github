@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "erblint-github"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
   s.summary = "erblint GitHub"
   s.description = "Template style checking for GitHub Ruby repositories"
   s.homepage = "https://github.com/github/erblint-github"
