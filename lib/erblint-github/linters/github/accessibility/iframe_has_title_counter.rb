@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class IframeHasTitle < Linter
+        class IframeHasTitleCounter < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
@@ -23,7 +23,21 @@ module ERBLint
               generate_offense(self.class, processed_source, tag) if title.empty? && !aria_hidden?(tag)
             end
 
-            rule_disabled?(processed_source)
+            counter_correct?(processed_source)
+          end
+
+          def autocorrect(processed_source, offense)
+            return unless offense.context
+
+            lambda do |corrector|
+              if processed_source.file_content.include?("erblint:counter #{simple_class_name}")
+                # update the counter if exists
+                corrector.replace(offense.source_range, offense.context)
+              else
+                # add comment with counter if none
+                corrector.insert_before(processed_source.source_buffer.source_range, "#{offense.context}\n")
+              end
+            end
           end
 
           private
