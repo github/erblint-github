@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-Certain interactive controls such as `button`, `summary`, `input`, `select`, `textarea`, or `a` can't have interactive children. Nesting interactive elements produces invalid HTML, and ssistive technologies, such as screen readers, might ignore or respond unexpectedly to such nested controls. 
+Certain interactive controls such as `button`, `summary`, `input`, `select`, `textarea`, or `a` can't have interactive children. Nesting interactive elements produces invalid HTML, and assistive technologies, such as screen readers, might ignore or respond unexpectedly to such nested controls. 
 
 ## Resources
 
