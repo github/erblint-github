@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files = Dir["README.md", "LICENSE", "lib/**/*"]
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.6.0"
+  s.required_ruby_version = ">= 2.7.0"
 
   s.email = ["opensource+erblint-github@github.com"]
   s.authors = ["GitHub Open Source"]
