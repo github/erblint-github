@@ -10,7 +10,7 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          MESSAGE = "Elements that are focusable should not have `aria-hidden='true' because it can cause confusion on the state of the element for assistive technology users."
+          MESSAGE = "Elements that are focusable should not have `aria-hidden='true' because it will cause confusion for assistive technology users."
 
           def run(processed_source)
             tags(processed_source).each do |tag|
