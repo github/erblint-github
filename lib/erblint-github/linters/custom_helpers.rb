@@ -6,6 +6,8 @@ require "openssl"
 module ERBLint
   module Linters
     module CustomHelpers
+      INTERACTIVE_ELEMENTS = %w[button summary input select textarea a].freeze
+
       def rule_disabled?(processed_source)
         processed_source.parser.ast.descendants(:erb).each do |node|
           indicator_node, _, code_node, = *node
@@ -88,6 +90,15 @@ module ERBLint
 
       def simple_class_name
         self.class.name.gsub("ERBLint::Linters::", "")
+      end
+
+      def focusable?(tag)
+        tabindex = possible_attribute_values(tag, "tabindex")
+        if INTERACTIVE_ELEMENTS.include?(tag.name)
+          tabindex.empty? || tabindex.first.to_i >= 0
+        else
+          tabindex.any? && tabindex.first.to_i >= 0
+        end
       end
     end
   end

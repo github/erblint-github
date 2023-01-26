@@ -10,7 +10,6 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          INTERACTIVE_ELEMENTS = %w[button summary input select textarea a].freeze
           MESSAGE = "Nesting interactive elements produces invalid HTML, and ssistive technologies, such as screen readers, might ignore or respond unexpectedly to such nested controls."
 
           def run(processed_source)
