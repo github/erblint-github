@@ -6,70 +6,56 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Setup Ruby
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 3.0.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: gems-build-rails-main-ruby-2.7.x-${{ hashFiles('**/Gemfile.lock') }}
-    - name: Lint with Rubocop
-      run: |
-        gem install bundler:2.2.32
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-        bundle exec rubocop
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - name: Lint with Rubocop
+        run: |
+          bundle install
+          bundle exec rubocop
   test:
     strategy:
       fail-fast: false
       matrix:
-        ruby_version: ["2.6", "2.7", "3.0"]
+        ruby_version: ["2.7", "3.0"]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby_version }}
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-    - name: Run tests
-      run: bundle exec rake
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+          bundler-cache: true
+      - name: Install dependencies
+        run: bundle install
+      - name: Run tests
+        run: bundle exec rake
   docs-coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Setup Ruby
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 3.0.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: gems-build-rails-main-ruby-2.7.x-${{ hashFiles('**/Gemfile.lock') }}
-    - name: Verify docs coverage
-      run: |
-        gem install bundler:2.2.32
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-        bundle exec rake docs:coverage
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - name: Verify docs coverage
+        run: |
+          bundle install
+          bundle exec rake docs:coverage
   tests-coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Setup Ruby
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 3.0.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: gems-build-rails-main-ruby-2.7.x-${{ hashFiles('**/Gemfile.lock') }}
-    - name: Verify all rules have test coverage
-      run: |
-        gem install bundler:2.2.32
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-        bundle exec rake tests:coverage
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - name: Verify all rules have test coverage
+        run: |
+          bundle install
+          bundle exec rake tests:coverage

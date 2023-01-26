@@ -1,17 +1,10 @@
 inherit_gem:
   rubocop-github:
-    - config/default_edge.yml
-    - config/rails_edge.yml
+    - config/default.yml
 
 AllCops:
   NewCops: enable
   SuggestExtensions: false
 
-Rails/RefuteMethods:
-  Enabled: false
-
 Style/Documentation:
-  Enabled: false
-
-Rails/RakeEnvironment:
   Enabled: false
