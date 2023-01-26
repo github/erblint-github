@@ -21,18 +21,24 @@ class NoAriaHiddenOnFocusableCounterTest < LinterTestCase
     assert_empty @linter.offenses
   end
 
-  def test_warns_when_link_has_aria_hidden_true
-    @file = "<a aria-hidden='true' href='github.com'>GitHub</a>"
-    @linter.run(processed_source)
-
-    refute_empty @linter.offenses
-  end
-
   def test_does_not_warn_when_link_has_aria_hidden_true_and_is_not_focusable
     @file = "<a aria-hidden='true' tabindex='-1' href='github.com'>GitHub</a>"
     @linter.run(processed_source)
 
     assert_empty @linter.offenses
+  end
+
+  def test_warns_when_element_has_aria_hidden_true_and_not_tab_focusable
+    @file = "<div role='button' tabindex='0' a aria-hidden='true'>GitHub</a>"
+    @linter.run(processed_source)
+    refute_empty @linter.offenses
+  end
+
+  def test_warns_when_link_has_aria_hidden_true
+    @file = "<a aria-hidden='true' href='github.com'>GitHub</a>"
+    @linter.run(processed_source)
+
+    refute_empty @linter.offenses
   end
 
   def test_warns_when_element_has_aria_hidden_true_and_is_tab_focusable
