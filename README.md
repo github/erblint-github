@@ -39,6 +39,8 @@ linters:
     enabled: true
   GitHub::Accessibility::NestedInteractiveElementsCounter:
     enabled: true
+  GitHub::Accessibility::NoAriaHiddenOnFocusableCounter:
+    enabled: true
   GitHub::Accessibility::NoAriaLabelMisuseCounter:
     enabled: true
   GitHub::Accessibility::NoPositiveTabIndexCounter:
@@ -61,6 +63,7 @@ linters:
 - [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
 - [GitHub::Accessibility::IframeHasTitleCounter](./docs/rules/accessibility/iframe-has-title-counter.md)
 - [GitHub::Accessibility::ImageHasAltCounter](./docs/rules/accessibility/image-has-alt-counter.md)
+- [GitHub::Accessibility::NoAriaHiddenOnFocusableCounter](./docs/rules/accessibility/no-aria-hidden-on-focusable-counter.md)
 - [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse-counter.md)
 - [GitHub::Accessibility::NoPositiveTabIndexCounter](./docs/rules/accessibility/no-positive-tab-index-counter.md)
 - [GitHub::Accessibility::NoRedundantImageAltCounter](./docs/rules/accessibility/no-redundant-image-alt-counter.md)
