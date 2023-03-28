@@ -23,7 +23,7 @@ require "erblint-github/linters"
 ```yaml 
 ---
 linters:
-  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter:
+  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
     enabled: true
   GitHub::Accessibility::AvoidGenericLinkTextCounter:
     enabled: true
@@ -55,7 +55,7 @@ linters:
 
 ## Rules
 
-- [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled-counter.md)
+- [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
 - [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter.md)
 - [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label-counter.md)
