@@ -50,7 +50,7 @@ class AvoidBothDisabledAndAriaDisabled < LinterTestCase
   def test_does_not_raise_when_ignore_comment_with_correct_count_if_counter_enabled
     @file = <<~ERB
       <%# erblint:counter GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter 1 %>
-      <button disabled aria-disabled="true">Some text</span>
+      <button disabled aria-disabled="true">Some text</button>
     ERB
     @linter.config.counter_enabled = true
     @linter.run(processed_source)
