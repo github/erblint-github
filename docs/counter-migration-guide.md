@@ -13,7 +13,7 @@ If your configuration looks something like:
 linters:
   GitHub::Accessibility::AvoidBothDisabledAndAriaCounter:
     enabled: true
-  GitHub::Accessibility::AvoidGenericLinkTextCounter:
+  GitHub::Accessibility::AvoidGenericLinkText:
     enabled: true
   GitHub::Accessibility::DisabledAttributeCounter:
     enabled: true

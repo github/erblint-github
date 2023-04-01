@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class AvoidGenericLinkTextCounter < Linter
+        class AvoidGenericLinkText < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
@@ -21,6 +21,11 @@ module ERBLint
           ARIA_LABEL_ATTRIBUTES = %w[aria-labelledby aria-label].freeze
 
           MESSAGE = "Avoid using generic link text such as #{BANNED_GENERIC_TEXT.join(', ')} which do not make sense in isolation."
+
+          class ConfigSchema < LinterConfig
+            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
+          end
+          self.config_schema = ConfigSchema
 
           def run(processed_source)
             processed_source.ast.children.each_with_index do |node, index|
@@ -93,20 +98,8 @@ module ERBLint
                 banned_text = nil
               end
             end
-            counter_correct?(processed_source)
-          end
-
-          def autocorrect(processed_source, offense)
-            return unless offense.context
-
-            lambda do |corrector|
-              if processed_source.file_content.include?("erblint:counter #{simple_class_name}")
-                # update the counter if exists
-                corrector.replace(offense.source_range, offense.context)
-              else
-                # add comment with counter if none
-                corrector.insert_before(processed_source.source_buffer.source_range, "#{offense.context}\n")
-              end
+            if @config.counter_enabled?
+              counter_correct?(processed_source)
             end
           end
 
