@@ -13,6 +13,11 @@ module ERBLint
           MESSAGE = "<img> alt prop should not contain `image` or `picture` as screen readers already announce the element as an image"
           REDUNDANT_ALT_WORDS = %w[image picture].freeze
 
+          class ConfigSchema < LinterConfig
+            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
+          end
+          self.config_schema = ConfigSchema
+          
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.name != "img"
@@ -24,20 +29,8 @@ module ERBLint
               generate_offense(self.class, processed_source, tag) if (alt.downcase.split & REDUNDANT_ALT_WORDS).any?
             end
 
-            counter_correct?(processed_source)
-          end
-
-          def autocorrect(processed_source, offense)
-            return unless offense.context
-
-            lambda do |corrector|
-              if processed_source.file_content.include?("erblint:counter #{simple_class_name}")
-                # update the counter if exists
-                corrector.replace(offense.source_range, offense.context)
-              else
-                # add comment with counter if none
-                corrector.insert_before(processed_source.source_buffer.source_range, "#{offense.context}\n")
-              end
+            if @config.counter_enabled?
+              counter_correct?(processed_source)
             end
           end
         end

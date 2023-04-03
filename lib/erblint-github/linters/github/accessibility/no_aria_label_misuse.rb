@@ -18,6 +18,11 @@ module ERBLint
 
           MESSAGE = "[aria-label] and [aria-labelledby] usage are only reliably supported on interactive elements and a subset of ARIA roles"
 
+          class ConfigSchema < LinterConfig
+            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
+          end
+          self.config_schema = ConfigSchema
+          
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.closing?
@@ -34,20 +39,8 @@ module ERBLint
                 end
               end
             end
-            counter_correct?(processed_source)
-          end
-
-          def autocorrect(processed_source, offense)
-            return unless offense.context
-
-            lambda do |corrector|
-              if processed_source.file_content.include?("erblint:counter #{simple_class_name}")
-                # update the counter if exists
-                corrector.replace(offense.source_range, offense.context)
-              else
-                # add comment with counter if none
-                corrector.insert_before(processed_source.source_buffer.source_range, "#{offense.context}\n")
-              end
+            if @config.counter_enabled?
+              counter_correct?(processed_source)
             end
           end
         end
