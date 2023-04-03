@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class AvoidGenericLinkTextCounterTest < LinterTestCase
+class AvoidGenericLinkTextTest < LinterTestCase
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::AvoidGenericLinkText
   end
@@ -51,8 +51,7 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     @linter.run(processed_source)
 
     refute_empty @linter.offenses
-    # 3 offenses, 1 related to matching counter comment not present despite violations
-    assert_equal 4, @linter.offenses.count
+    assert_equal 3, @linter.offenses.count
   end
 
   def test_does_not_warn_when_banned_text_is_part_of_more_text
@@ -143,50 +142,17 @@ class AvoidGenericLinkTextCounterTest < LinterTestCase
     @linter.run(processed_source)
 
     refute_empty @linter.offenses
-    # 3 offenses, 1 related to matching counter comment not present despite violations
-    assert_equal 4, @linter.offenses.count
+    assert_equal 3, @linter.offenses.count
   end
 
-  def test_does_not_warns_if_element_has_correct_counter_comment
+  def test_does_not_warns_if_element_has_correct_counter_comment_if_config_enabled
     @file = <<~ERB
       <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 1 %>
       <a>Link</a>
     ERB
+    @linter.config.counter_enabled = true
     @linter.run(processed_source)
 
     assert_equal 0, @linter.offenses.count
-  end
-
-  def test_autocorrects_when_ignores_are_not_correct
-    @file = <<~ERB
-      <p>
-        <a href="github.com" aria-label='Click here to learn more'>Click here</a>
-        <a href="github.com" aria-label='Some totally different text'>Click here</a>
-        <a href="github.com" aria-labelledby='someElement'>Click here</a>
-      </p>
-      <p>
-        <%= link_to "learn more", billing_path, "aria-label": "something" %>
-        <%= link_to "learn more", billing_path, aria: { label: "something" } %>
-        <%= link_to "learn more", billing_path, aria: { describedby: "element123" } %>
-        <%= link_to "learn more", billing_path, "aria-describedby": "element123" %>
-      </p>
-    ERB
-    refute_equal @file, corrected_content
-
-    expected_content = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 3 %>
-      <p>
-        <a href="github.com" aria-label='Click here to learn more'>Click here</a>
-        <a href="github.com" aria-label='Some totally different text'>Click here</a>
-        <a href="github.com" aria-labelledby='someElement'>Click here</a>
-      </p>
-      <p>
-        <%= link_to "learn more", billing_path, "aria-label": "something" %>
-        <%= link_to "learn more", billing_path, aria: { label: "something" } %>
-        <%= link_to "learn more", billing_path, aria: { describedby: "element123" } %>
-        <%= link_to "learn more", billing_path, "aria-describedby": "element123" %>
-      </p>
-    ERB
-    assert_equal expected_content, corrected_content
   end
 end

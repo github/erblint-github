@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class LinkHasHref < LinterTestCase
+class LinkHasHrefTest < LinterTestCase
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::LinkHasHref
   end

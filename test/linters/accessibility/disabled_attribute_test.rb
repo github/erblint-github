@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class DisabledAttribute < LinterTestCase
+class DisabledAttributeTest < LinterTestCase
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::DisabledAttribute
   end
@@ -23,7 +23,7 @@ class DisabledAttribute < LinterTestCase
     assert_empty @linter.offenses
   end
 
-  def test_does_not_warn_if_link_has_href_attribute_and_has_correct_counter_comment
+  def test_does_not_warns_if_element_has_correct_counter_comment_if_config_enabled
     @file = <<~ERB
       <%# erblint:counter GitHub::Accessibility::DisabledAttributeCounter 1 %>
       <a href='https://github.com/' disabled>Go to GitHub</a>

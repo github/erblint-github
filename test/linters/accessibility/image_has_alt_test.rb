@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class ImageHasAltCounterTest < LinterTestCase
+class ImageHasAltTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::ImageHasAltCounter
+    ERBLint::Linters::GitHub::Accessibility::ImageHasAlt
   end
 
   def test_warns_if_image_has_no_alt_attribute
@@ -28,35 +28,13 @@ class ImageHasAltCounterTest < LinterTestCase
     assert_empty @linter.offenses
   end
 
-  def test_does_not_raise_when_ignore_comment_with_correct_count
+  def test_does_not_raise_when_ignore_comment_with_correct_count_if_config_enabled
     @file = <<~ERB
       <%# erblint:counter GitHub::Accessibility::ImageHasAltCounter 1 %>
       <img></img>
     ERB
-
+    @linter.config.counter_enabled = true
     @linter.run(processed_source)
     assert_empty @linter.offenses
-  end
-
-  def test_does_not_autocorrect_when_ignores_are_correct
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::ImageHasAltCounter 1 %>
-      <img></img>
-    ERB
-
-    assert_equal @file, corrected_content
-  end
-
-  def test_does_autocorrect_when_ignores_are_not_correct
-    @file = <<~ERB
-      <img></img>
-    ERB
-    refute_equal @file, corrected_content
-
-    expected_content = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::ImageHasAltCounter 1 %>
-      <img></img>
-    ERB
-    assert_equal expected_content, corrected_content
   end
 end

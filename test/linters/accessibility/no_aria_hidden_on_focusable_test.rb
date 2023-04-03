@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class NoAriaHiddenOnFocusableCounterTest < LinterTestCase
+class NoAriaHiddenOnFocusableTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::NoAriaHiddenOnFocusableCounter
+    ERBLint::Linters::GitHub::Accessibility::NoAriaHiddenOnFocusable
   end
 
   def test_does_not_warn_if_link_does_not_have_aria_hidden

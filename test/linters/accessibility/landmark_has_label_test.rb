@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class LandmarkHasLabel < LinterTestCase
+class LandmarkHasLabelTest < LinterTestCase
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::LandmarkHasLabel
   end
