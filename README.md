@@ -27,15 +27,15 @@ linters:
     enabled: true
   GitHub::Accessibility::AvoidGenericLinkTextCounter:
     enabled: true
-  GitHub::Accessibility::DisabledAttribute:
+  GitHub::Accessibility::DisabledAttributeCounter:
     enabled: true
   GitHub::Accessibility::IframeHasTitleCounter:
     enabled: true
   GitHub::Accessibility::ImageHasAltCounter:
     enabled: true
-  GitHub::Accessibility::LandmarkHasLabel:
+  GitHub::Accessibility::LandmarkHasLabelCounter:
     enabled: true
-  GitHub::Accessibility::LinkHasHref:
+  GitHub::Accessibility::LinkHasHrefCounter:
     enabled: true
   GitHub::Accessibility::NestedInteractiveElementsCounter:
     enabled: true
@@ -57,9 +57,9 @@ linters:
 
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
-- [GitHub::Accessibility::DisabledAttribute](./docs/rules/accessibility/disabled-attribute.md)
-- [GitHub::Accessibility::LandmarkHasLabel](./docs/rules/accessibility/landmark-has-label.md)
-- [GitHub::Accessibility::LinkHasHref](./docs/rules/accessibility/link-has-href.md)
+- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute.md)
+- [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label.md)
+- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href.md)
 - [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
 - [GitHub::Accessibility::IframeHasTitleCounter](./docs/rules/accessibility/iframe-has-title-counter.md)
 - [GitHub::Accessibility::ImageHasAltCounter](./docs/rules/accessibility/image-has-alt-counter.md)
@@ -70,19 +70,19 @@ linters:
 - [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute-counter.md)
 - [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg-has-accessible-text-counter.md)
 
-## Disabling a rule (experimental)
+## Disabling a rule (Deprecated)
 
-_This is an experimental feature which should ideally be upstreamed to erblint_
+_This is a soon-to-be deprecated feature. Do not use. See [migration guide](./docs/counter-migration-guide.md)_
 
 `erblint` does not natively support rule disables. At GitHub, we've implemented these rules in a way to allow rules to be disabled at an offense-level via counters or disabled at a file-level because often times, we want to enable a rule but aren't able to address all offenses at once. We achieve this in one of two ways.
 
 Rules that are marked as `Counter` can be disabled by adding a comment with the offense count that matches the number of offenses within the file like:
 
 ```.html.erb
-<%# erblint:counter GitHub::Accessibility::LinkHasHref 1 %>
+<%# erblint:counter GitHub::Accessibility::LinkHasHrefCounter 1 %>
 ```
 
-In this comment example, when a new `LinkHasHref` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
+In this comment example, when a new `LinkHasHrefCounter` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
 
 If you are enabling a rule for the first time and your codebase has a lot of offenses, you can use the `-a` command to automatically add these counter comments in the appropriate places.
 
