@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class AvoidBothDisabledAndAriaDisabled < LinterTestCase
+class AvoidBothDisabledAndAriaDisabledTest < LinterTestCase
   def linter_class
     ERBLint::Linters::GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled
   end
