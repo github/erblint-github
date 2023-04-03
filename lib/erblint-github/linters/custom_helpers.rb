@@ -8,24 +8,6 @@ module ERBLint
     module CustomHelpers
       INTERACTIVE_ELEMENTS = %w[button summary input select textarea a].freeze
 
-      def rule_disabled?(processed_source)
-        processed_source.parser.ast.descendants(:erb).each do |node|
-          indicator_node, _, code_node, = *node
-          indicator = indicator_node&.loc&.source
-          comment = code_node&.loc&.source&.strip
-          rule_name = simple_class_name
-
-          if indicator == "#" && comment.start_with?("erblint:disable") && comment.match(rule_name)
-            if @offenses.any?
-              clear_offenses
-            else
-              add_offense(processed_source.to_source_range(code_node.loc),
-                          "Unused erblint:disable comment for #{rule_name}")
-            end
-          end
-        end
-      end
-
       def counter_correct?(processed_source)
         comment_node = nil
         expected_count = 0
