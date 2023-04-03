@@ -44,7 +44,7 @@ class AvoidBothDisabledAndAriaDisabledTest < LinterTestCase
     @linter.run(processed_source)
 
     assert_equal @linter.offenses.count, 8
-    assert_match(/If you must, add <%# erblint:counter GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled 7 %> to bypass this check/, @linter.offenses.last.message)
+    assert_match(/If you must, add <%# erblint:disable GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled %> at the end of the offending line to bypass this check./, @linter.offenses.last.message)
   end
 
   def test_does_not_raise_when_ignore_comment_with_correct_count_if_counter_enabled

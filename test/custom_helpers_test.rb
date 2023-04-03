@@ -20,27 +20,6 @@ class CustomHelpersTest < LinterTestCase
     @linter.extend(ERBLint::Linters::CustomHelpers)
   end
 
-  def test_rule_disabled_clears_offenses_if_rule_is_disabled
-    @file = <<~HTML
-      <%# erblint:disable CustomHelpersTest::FakeLinter %>
-    HTML
-    @linter.offenses = ["fake offense"]
-    assert_equal @linter.offenses.length, 1
-
-    extended_linter.rule_disabled?(processed_source)
-    assert_empty @linter.offenses
-  end
-
-  def test_rule_disabled_adds_offense_if_disable_comment_is_present_but_no_offense
-    @file = <<~HTML
-      <%# erblint:disable CustomHelpersTest::FakeLinter %>
-    HTML
-    assert_empty @linter.offenses
-
-    extended_linter.rule_disabled?(processed_source)
-    assert_equal "Unused erblint:disable comment for CustomHelpersTest::FakeLinter", @linter.offenses.first.message
-  end
-
   def test_counter_correct_does_not_add_offense_if_counter_matches_offense_count
     @file = <<~HTML
       <%# erblint:counter CustomHelpersTest::FakeLinter 1 %>

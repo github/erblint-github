@@ -8,24 +8,6 @@ module ERBLint
     module CustomHelpers
       INTERACTIVE_ELEMENTS = %w[button summary input select textarea a].freeze
 
-      def rule_disabled?(processed_source)
-        processed_source.parser.ast.descendants(:erb).each do |node|
-          indicator_node, _, code_node, = *node
-          indicator = indicator_node&.loc&.source
-          comment = code_node&.loc&.source&.strip
-          rule_name = simple_class_name
-
-          if indicator == "#" && comment.start_with?("erblint:disable") && comment.match(rule_name)
-            if @offenses.any?
-              clear_offenses
-            else
-              add_offense(processed_source.to_source_range(code_node.loc),
-                          "Unused erblint:disable comment for #{rule_name}")
-            end
-          end
-        end
-      end
-
       def counter_correct?(processed_source)
         comment_node = nil
         expected_count = 0
@@ -52,10 +34,10 @@ module ERBLint
         first_offense = @offenses[0]
 
         if comment_node.nil?
-          add_offense(processed_source.to_source_range(first_offense.source_range), "#{rule_name}: If you must, add <%# erblint:counter #{rule_name} #{offenses_count} %> to bypass this check.", "<%# erblint:counter #{rule_name} #{offenses_count} %>")
+          add_offense(processed_source.to_source_range(first_offense.source_range), "#{rule_name}: If you must, add <%# erblint:disable #{rule_name} %> at the end of the offending line to bypass this check. See https://github.com/shopify/erb-lint#disable-rule-at-offense-level", "<%# erblint:disable #{rule_name} %>")
         else
           clear_offenses
-          add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%# erblint:counter #{rule_name} #{offenses_count} %>") if expected_count != offenses_count
+          add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%# erblint:counter #{rule_name}Counter #{offenses_count} %>") if expected_count != offenses_count
         end
       end
 
