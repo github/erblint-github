@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class NestedInteractiveElementsCounter < Linter
+        class NestedInteractiveElements < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 

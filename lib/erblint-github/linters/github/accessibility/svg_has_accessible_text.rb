@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class SvgHasAccessibleTextCounter < Linter
+        class SvgHasAccessibleText < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
@@ -16,7 +16,7 @@ module ERBLint
             property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
           end
           self.config_schema = ConfigSchema
-          
+
           def run(processed_source)
             current_svg = nil
             has_accessible_label = false

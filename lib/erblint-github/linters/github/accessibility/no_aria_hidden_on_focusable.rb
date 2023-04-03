@@ -6,12 +6,12 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class NoAriaHiddenOnFocusableCounter < Linter
+        class NoAriaHiddenOnFocusable < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
           MESSAGE = "Elements that are focusable should not have `aria-hidden='true' because it will cause confusion for assistive technology users."
-          
+
           class ConfigSchema < LinterConfig
             property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
           end

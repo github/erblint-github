@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class NoAriaLabelMisuseCounter < Linter
+        class NoAriaLabelMisuse < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
@@ -22,7 +22,7 @@ module ERBLint
             property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
           end
           self.config_schema = ConfigSchema
-          
+
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.closing?
