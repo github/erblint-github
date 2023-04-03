@@ -1,4 +1,4 @@
-# No aria-hidden on focusable counter
+# No aria-hidden on focusable
 
 ## Rule Details
 

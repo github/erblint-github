@@ -1,4 +1,4 @@
-# SVG has accessible text counter
+# SVG has accessible text
 
 ## Rule Details
 

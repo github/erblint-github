@@ -1,4 +1,4 @@
-# No title attribute counter
+# No title attribute
 
 ## Rule Details
 

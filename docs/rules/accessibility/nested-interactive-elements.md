@@ -1,4 +1,4 @@
-# Nested Interactive Elements Counter
+# Nested Interactive Elements
 
 ## Rule Details
 
