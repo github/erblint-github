@@ -27,15 +27,15 @@ linters:
     enabled: true
   GitHub::Accessibility::AvoidGenericLinkTextCounter:
     enabled: true
-  GitHub::Accessibility::DisabledAttributeCounter:
+  GitHub::Accessibility::DisabledAttribute:
     enabled: true
   GitHub::Accessibility::IframeHasTitleCounter:
     enabled: true
   GitHub::Accessibility::ImageHasAltCounter:
     enabled: true
-  GitHub::Accessibility::LandmarkHasLabelCounter:
+  GitHub::Accessibility::LandmarkHasLabel:
     enabled: true
-  GitHub::Accessibility::LinkHasHrefCounter:
+  GitHub::Accessibility::LinkHasHref:
     enabled: true
   GitHub::Accessibility::NestedInteractiveElementsCounter:
     enabled: true
@@ -57,9 +57,9 @@ linters:
 
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text-counter.md)
-- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute-counter.md)
-- [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label-counter.md)
-- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href-counter.md)
+- [GitHub::Accessibility::DisabledAttribute](./docs/rules/accessibility/disabled-attribute.md)
+- [GitHub::Accessibility::LandmarkHasLabel](./docs/rules/accessibility/landmark-has-label.md)
+- [GitHub::Accessibility::LinkHasHref](./docs/rules/accessibility/link-has-href.md)
 - [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements-counter.md)
 - [GitHub::Accessibility::IframeHasTitleCounter](./docs/rules/accessibility/iframe-has-title-counter.md)
 - [GitHub::Accessibility::ImageHasAltCounter](./docs/rules/accessibility/image-has-alt-counter.md)
@@ -79,10 +79,10 @@ _This is an experimental feature which should ideally be upstreamed to erblint_
 Rules that are marked as `Counter` can be disabled by adding a comment with the offense count that matches the number of offenses within the file like:
 
 ```.html.erb
-<%# erblint:counter GitHub::Accessibility::LinkHasHrefCounter 1 %>
+<%# erblint:counter GitHub::Accessibility::LinkHasHref 1 %>
 ```
 
-In this comment example, when a new `LinkHasHrefCounter` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
+In this comment example, when a new `LinkHasHref` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
 
 If you are enabling a rule for the first time and your codebase has a lot of offenses, you can use the `-a` command to automatically add these counter comments in the appropriate places.
 

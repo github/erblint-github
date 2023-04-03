@@ -1,4 +1,4 @@
-# Link Has Href counter
+# Link Has Href
 
 ## Rule Details
 

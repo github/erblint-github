@@ -6,23 +6,30 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class DisabledAttributeCounter < Linter
+        class LinkHasHref < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          VALID_DISABLED_TAGS = %w[button input textarea option select fieldset optgroup task-lists].freeze
-          MESSAGE = "`disabled` is only valid on #{VALID_DISABLED_TAGS.join(', ')}."
+          MESSAGE = "Links should go somewhere, you probably want to use a `<button>` instead."
+
+          class ConfigSchema < LinterConfig
+            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
+          end
+          self.config_schema = ConfigSchema
 
           def run(processed_source)
             tags(processed_source).each do |tag|
+              next if tag.name != "a"
               next if tag.closing?
-              next if VALID_DISABLED_TAGS.include?(tag.name)
-              next if tag.attributes["disabled"].nil?
 
-              generate_offense(self.class, processed_source, tag)
+              href = possible_attribute_values(tag, "href")
+              name = tag.attributes["name"]
+              generate_offense(self.class, processed_source, tag) if (!name && href.empty?) || href.include?("#")
             end
 
-            counter_correct?(processed_source)
+            if @config.counter_enabled?
+              counter_correct?(processed_source)
+            end
           end
 
           def autocorrect(processed_source, offense)

@@ -6,7 +6,7 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class LandmarkHasLabelCounter < Linter
+        class LandmarkHasLabel < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
@@ -36,6 +36,11 @@ module ERBLint
             end
           end
 
+          class ConfigSchema < LinterConfig
+            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
+          end
+          self.config_schema = ConfigSchema
+
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.closing?
@@ -52,7 +57,9 @@ module ERBLint
               end
             end
 
-            counter_correct?(processed_source)
+            if @config.counter_enabled?
+              counter_correct?(processed_source)
+            end
           end
 
           def autocorrect(processed_source, offense)

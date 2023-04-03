@@ -1,4 +1,4 @@
-# Landmark Has Label Counter
+# Landmark Has Label
 
 ## Rule Details
 

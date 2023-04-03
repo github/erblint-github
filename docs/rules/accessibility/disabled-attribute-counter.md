@@ -1,4 +1,4 @@
-# Disabled attribute counter
+# Disabled attribute
 
 ## Rule Details
 
