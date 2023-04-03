@@ -31,7 +31,7 @@ linters:
     enabled: true
   GitHub::Accessibility::IframeHasTitleCounter:
     enabled: true
-  GitHub::Accessibility::ImageHasAltCounter:
+  GitHub::Accessibility::ImageHasAltCounterCounter:
     enabled: true
   GitHub::Accessibility::LandmarkHasLabelCounter:
     enabled: true
