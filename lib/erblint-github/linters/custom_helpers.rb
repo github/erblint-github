@@ -34,10 +34,10 @@ module ERBLint
         first_offense = @offenses[0]
 
         if comment_node.nil?
-          add_offense(processed_source.to_source_range(first_offense.source_range), "#{rule_name}: If you must, add <%# erblint:counter #{rule_name} #{offenses_count} %> to bypass this check.", "<%# erblint:counter #{rule_name} #{offenses_count} %>")
+          add_offense(processed_source.to_source_range(first_offense.source_range), "#{rule_name}: If you must, add <%# erblint:disable #{rule_name} %> at the end of the offending line to bypass this check. See https://github.com/shopify/erb-lint#disable-rule-at-offense-level", "<%# erblint:disable #{rule_name} %>")
         else
           clear_offenses
-          add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%# erblint:counter #{rule_name} #{offenses_count} %>") if expected_count != offenses_count
+          add_offense(processed_source.to_source_range(comment_node.loc), "Incorrect erblint:counter number for #{rule_name}. Expected: #{expected_count}, actual: #{offenses_count}.", "<%# erblint:counter #{rule_name}Counter #{offenses_count} %>") if expected_count != offenses_count
         end
       end
 
