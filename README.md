@@ -23,52 +23,52 @@ require "erblint-github/linters"
 ```yaml 
 ---
 linters:
-  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter:
+  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
     enabled: true
-  GitHub::Accessibility::AvoidGenericLinkTextCounter:
+  GitHub::Accessibility::AvoidGenericLinkText:
     enabled: true
-  GitHub::Accessibility::DisabledAttributeCounter:
+  GitHub::Accessibility::DisabledAttribute:
     enabled: true
-  GitHub::Accessibility::IframeHasTitleCounter:
+  GitHub::Accessibility::IframeHasTitle:
     enabled: true
-  GitHub::Accessibility::ImageHasAltCounterCounter:
+  GitHub::Accessibility::ImageHasAlt:
     enabled: true
-  GitHub::Accessibility::LandmarkHasLabelCounter:
+  GitHub::Accessibility::LandmarkHasLabel:
     enabled: true
-  GitHub::Accessibility::LinkHasHrefCounter:
+  GitHub::Accessibility::LinkHasHref:
     enabled: true
-  GitHub::Accessibility::NestedInteractiveElementsCounter:
+  GitHub::Accessibility::NestedInteractiveElements:
     enabled: true
-  GitHub::Accessibility::NoAriaHiddenOnFocusableCounter:
+  GitHub::Accessibility::NoAriaHiddenOnFocusable:
     enabled: true
-  GitHub::Accessibility::NoAriaLabelMisuseCounter:
+  GitHub::Accessibility::NoAriaLabelMisuse:
     enabled: true
-  GitHub::Accessibility::NoPositiveTabIndexCounter:
+  GitHub::Accessibility::NoPositiveTabIndex:
     enabled: true
-  GitHub::Accessibility::NoRedundantImageAltCounter:
+  GitHub::Accessibility::NoRedundantImageAlt:
     enabled: true
-  GitHub::Accessibility::NoTitleAttributeCounter:
+  GitHub::Accessibility::NoTitleAttribute:
     enabled: true
-  GitHub::Accessibility::SvgHasAccessibleTextCounter:
+  GitHub::Accessibility::SvgHasAccessibleText:
     enabled: true
 ```
 
 ## Rules
 
-- [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
-- [GitHub::Accessibility::AvoidGenericLinkTextCounter](./docs/rules/accessibility/avoid-generic-link-text.md)
-- [GitHub::Accessibility::DisabledAttributeCounter](./docs/rules/accessibility/disabled-attribute.md)
-- [GitHub::Accessibility::LandmarkHasLabelCounter](./docs/rules/accessibility/landmark-has-label.md)
-- [GitHub::Accessibility::LinkHasHrefCounter](./docs/rules/accessibility/link-has-href.md)
-- [GitHub::Accessibility::NestedInteractiveElementsCounter](./docs/rules/accessibility/nested-interactive-elements.md)
-- [GitHub::Accessibility::IframeHasTitleCounter](./docs/rules/accessibility/iframe-has-title.md)
-- [GitHub::Accessibility::ImageHasAltCounter](./docs/rules/accessibility/image-has-alt.md)
-- [GitHub::Accessibility::NoAriaHiddenOnFocusableCounter](./docs/rules/accessibility/no-aria-hidden-on-focusable.md)
-- [GitHub::Accessibility::NoAriaLabelMisuseCounter](./docs/rules/accessibility/no-aria-label-misuse.md)
-- [GitHub::Accessibility::NoPositiveTabIndexCounter](./docs/rules/accessibility/no-positive-tab-index.md)
-- [GitHub::Accessibility::NoRedundantImageAltCounter](./docs/rules/accessibility/no-redundant-image-alt.md)
-- [GitHub::Accessibility::NoTitleAttributeCounter](./docs/rules/accessibility/no-title-attribute.md)
-- [GitHub::Accessibility::SvgHasAccessibleTextCounter](./docs/rules/accessibility/svg-has-accessible-text.md)
+- [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
+- [GitHub::Accessibility::AvoidGenericLinkText](./docs/rules/accessibility/avoid-generic-link-text.md)
+- [GitHub::Accessibility::DisabledAttribute](./docs/rules/accessibility/disabled-attribute.md)
+- [GitHub::Accessibility::LandmarkHasLabel](./docs/rules/accessibility/landmark-has-label.md)
+- [GitHub::Accessibility::LinkHasHref](./docs/rules/accessibility/link-has-href.md)
+- [GitHub::Accessibility::NestedInteractiveElements](./docs/rules/accessibility/nested-interactive-elements.md)
+- [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)
+- [GitHub::Accessibility::ImageHasAlt](./docs/rules/accessibility/image-has-alt.md)
+- [GitHub::Accessibility::NoAriaHiddenOnFocusable](./docs/rules/accessibility/no-aria-hidden-on-focusable.md)
+- [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/no-aria-label-misuse.md)
+- [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
+- [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
+- [GitHub::Accessibility::NoTitleAttribute](./docs/rules/accessibility/no-title-attribute.md)
+- [GitHub::Accessibility::SvgHasAccessibleText](./docs/rules/accessibility/svg-has-accessible-text.md)
 
 ## Disabling a rule (Deprecated)
 
@@ -82,7 +82,7 @@ Rules that are marked as `Counter` can be disabled by adding a comment with the 
 <%# erblint:counter GitHub::Accessibility::LinkHasHrefCounter 1 %>
 ```
 
-In this comment example, when a new `LinkHasHrefCounter` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
+In this comment example, when a new `LinkHasHref` offense has been added, the counter will need to be bumped up to 2. More recent rules use a `Counter` format.
 
 If you are enabling a rule for the first time and your codebase has a lot of offenses, you can use the `-a` command to automatically add these counter comments in the appropriate places.
 
