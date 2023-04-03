@@ -4,7 +4,7 @@ require "test_helper"
 
 class AvoidGenericLinkTextCounterTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::AvoidGenericLinkTextCounter
+    ERBLint::Linters::GitHub::Accessibility::AvoidGenericLinkText
   end
 
   def test_warns_when_link_text_is_click_here
