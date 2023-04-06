@@ -52,11 +52,11 @@ class AriaLabelIsWellFormatted < LinterTestCase
   def test_does_not_warn_if_aria_label_is_in_excepted_list
     @file = <<~HTML
      <button aria-label="hello" ></button>
-
+     <button aria-label="hello world" ></button>
     HTML
     @linter.config.exceptions = ["hello"]
     @linter.run(processed_source)
 
-    assert_empty @linter.offenses
+    assert_equal 1, @linter.offenses.count
   end
 end
