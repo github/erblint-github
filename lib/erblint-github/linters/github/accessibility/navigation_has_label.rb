@@ -6,16 +6,11 @@ module ERBLint
   module Linters
     module GitHub
       module Accessibility
-        class LandmarkHasLabel < Linter
+        class NavigationHasLabel < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
           MESSAGE = "The navigation landmark should have a unique accessible name via `aria-label` or `aria-labelledby`."
-
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
 
           def run(processed_source)
             tags(processed_source).each do |tag|
@@ -29,10 +24,6 @@ module ERBLint
                 generate_offense(self.class, processed_source, tag, message)
               end
 
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

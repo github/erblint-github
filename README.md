@@ -33,7 +33,7 @@ linters:
     enabled: true
   GitHub::Accessibility::ImageHasAlt:
     enabled: true
-  GitHub::Accessibility::LandmarkHasLabel:
+  GitHub::Accessibility::NavigationHasLabel:
     enabled: true
   GitHub::Accessibility::LinkHasHref:
     enabled: true
@@ -58,7 +58,7 @@ linters:
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkText](./docs/rules/accessibility/avoid-generic-link-text.md)
 - [GitHub::Accessibility::DisabledAttribute](./docs/rules/accessibility/disabled-attribute.md)
-- [GitHub::Accessibility::LandmarkHasLabel](./docs/rules/accessibility/landmark-has-label.md)
+- [GitHub::Accessibility::NavigationHasLabel](./docs/rules/accessibility/navigation-has-label.md)
 - [GitHub::Accessibility::LinkHasHref](./docs/rules/accessibility/link-has-href.md)
 - [GitHub::Accessibility::NestedInteractiveElements](./docs/rules/accessibility/nested-interactive-elements.md)
 - [GitHub::Accessibility::IframeHasTitle](./docs/rules/accessibility/iframe-has-title.md)

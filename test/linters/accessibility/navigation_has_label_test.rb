@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-class LandmarkHasLabelTest < LinterTestCase
+class NavigationHasLabelTest < LinterTestCase
   def linter_class
-    ERBLint::Linters::GitHub::Accessibility::LandmarkHasLabel
+    ERBLint::Linters::GitHub::Accessibility::NavigationHasLabel
   end
 
   def test_warns_if_navigation_landmark_has_no_label
