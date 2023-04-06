@@ -4,7 +4,7 @@
 
 `[aria-label]` content should be formatted in the same way you would visual text. Please use sentence case.
 
-Do not connect the words like you would an ID. An `aria-label` is different from `aria-labelledby`.
+Do not kebab case the words like you would an HTML ID. An `aria-label` is different from `aria-labelledby`.
 An `aria-label` is not an ID, and should be formatted as human-friendly text.
 
 ## Config
