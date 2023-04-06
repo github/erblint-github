@@ -7,24 +7,42 @@ class LandmarkHasLabelTest < LinterTestCase
     ERBLint::Linters::GitHub::Accessibility::LandmarkHasLabel
   end
 
-  def test_warns_if_landmark_has_no_label
+  def test_warns_if_navigation_landmark_has_no_label
     @file = <<~ERB
-      <section>
-        <h1>This is a text</h1>
-      </section>
+      <nav>
+      </nav>
     ERB
     @linter.run(processed_source)
 
     assert_equal(1, @linter.offenses.count)
-    error_messages = @linter.offenses.map(&:message).sort
-    assert_match(/Landmark elements should have an aria-label attribute, or aria-labelledby if a heading elements exists in the landmark./, error_messages.last)
+    assert_match(/The navigation landmark should have a unique accessible name via `aria-label` or `aria-labelledby`./, @linter.offenses.first.message)
   end
 
-  def test_does_not_warn_if_landmark_has_label
+  def test_warns_if_navigation_role_landmark_has_no_label
     @file = <<~ERB
-      <section aria-labelledby="title_id"t>
-        <h1 id="title_id">This is a text</h1>
-      </section>
+      <div role="navigation">
+      </div>
+    ERB
+    @linter.run(processed_source)
+
+    assert_equal(1, @linter.offenses.count)
+    assert_match(/The navigation landmark should have a unique accessible name via `aria-label` or `aria-labelledby`./, @linter.offenses.first.message)
+  end
+
+  def test_does_not_warn_if_navigation_landmark_has_aria_labelled_by
+    @file = <<~ERB
+      <nav aria-labelledby="title_id"t>
+      </nav>
+    ERB
+    @linter.run(processed_source)
+
+    assert_empty @linter.offenses
+  end
+
+  def test_does_not_warn_if_navigation_landmark_has_aria_label
+    @file = <<~ERB
+      <nav aria-label="Repos"t>
+      </nav>
     ERB
     @linter.run(processed_source)
 
