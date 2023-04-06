@@ -9,7 +9,7 @@ An `aria-label` is not an ID, and should be formatted as human-friendly text.
 
 ## Config
 
-If you determine that there are valid scenarios for `aria-label` to start with downcase, you may except it in your `.erb-lint.yml` config like so:
+If you determine that there are valid scenarios for `aria-label` to start with lowercase, you may exempt it in your `.erb-lint.yml` config like so:
 
 ```yml
   GitHub::Accessibility::AriaLabelIsWellFormatted:
