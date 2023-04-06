@@ -17,11 +17,11 @@ Gem::Specification.new do |s|
   s.authors = ["GitHub Open Source"]
 
   s.add_development_dependency "erb_lint", "~> 0.3.0"
-  s.add_development_dependency "minitest", "~> 5.17.0"
+  s.add_development_dependency "minitest", "~> 5.18.0"
   s.add_development_dependency "mocha", "~> 2.0.2"
   s.add_development_dependency "rake", "~> 13.0.6"
 
-  s.add_development_dependency "rubocop", "= 1.44.1"
+  s.add_development_dependency "rubocop", "= 1.49.0"
   s.add_development_dependency "rubocop-github", "~> 0.20.0"
   s.metadata["rubygems_mfa_required"] = "true"
 end
