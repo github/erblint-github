@@ -23,6 +23,8 @@ require "erblint-github/linters"
 ```yaml 
 ---
 linters:
+  GitHub::Accessibility::AriaLabelIsWellFormatted:
+    enabled: true
   GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
     enabled: true
   GitHub::Accessibility::AvoidGenericLinkText:
@@ -55,6 +57,7 @@ linters:
 
 ## Rules
 
+- [GitHub::Accessibility::AriaLabelIsWellFormatted](./docs/rules/accessibility/aria-label-is-well-formatted.md)
 - [GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled](./docs/rules/accessibility/avoid-both-disabled-and-aria-disabled.md)
 - [GitHub::Accessibility::AvoidGenericLinkText](./docs/rules/accessibility/avoid-generic-link-text.md)
 - [GitHub::Accessibility::DisabledAttribute](./docs/rules/accessibility/disabled-attribute.md)
