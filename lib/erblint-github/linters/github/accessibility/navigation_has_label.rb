@@ -10,7 +10,7 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          MESSAGE = "The navigation landmark should have a unique accessible name via `aria-label` or `aria-labelledby`."
+          MESSAGE = "The navigation landmark should have a unique accessible name via `aria-label` or `aria-labelledby`. Remember that the name does not need to include `navigation` or `nav` since it will already be announced."
 
           def run(processed_source)
             tags(processed_source).each do |tag|
