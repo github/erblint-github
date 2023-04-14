@@ -9,7 +9,7 @@ Keep the following practices in mind:
 - Use sentence case.
 - Do not kebab case the words like you would an HTML ID. An `aria-label` is different from `aria-labelledby`. An `aria-label` represents the name of a control, and has the same purpose as a visual label would for screen reader users. Therefore, it should be formatted as human-friendly text.
 - Do not use line-break characters like `&#10;`. An accessible name should be concise to start with.
-- Do not set the `aria-label` to a URL. Instead, use an appropriate name.
+- Do not set the `aria-label` to a URL. Instead, use an appropriate human-friendly description.
 
 ## Resources
 
