@@ -2,10 +2,18 @@
 
 ## Rule Details
 
-`[aria-label]` content should be formatted in the same way you would visual text. Please use sentence case.
+`[aria-label]` content should be formatted in the same way you would visual text.
 
-Do not kebab case the words like you would an HTML ID. An `aria-label` is different from `aria-labelledby`.
-An `aria-label` is not an ID, and should be formatted as human-friendly text.
+Keep the following practices in mind:
+
+- Use sentence case.
+- Do not kebab case the words like you would an HTML ID. An `aria-label` is different from `aria-labelledby`. An `aria-label` represents the name of a control, and has the same purpose as a visual label would for screen reader users. Therefore, it should be formatted as human-friendly text.
+- Do not use line-break characters like `&#10;`. An accessible name should be concise to start with.
+- Do not set the `aria-label` to a URL. Instead, use an appropriate human-friendly description.
+
+## Resources
+
+- [Staff only: Guidance on naming controls](https://github.com/github/accessibility-playbook/blob/main/content/link-and-button-guidance.mdx#guidance-on-naming-controls)
 
 ## Config
 
@@ -35,6 +43,14 @@ If you determine that there are valid scenarios for `aria-label` to start with l
 <button aria-label="button-1">
 ```
 
+```erb
+<button aria-label="Go to my&#10;website.">
+```
+
+```erb
+<a href="https://github.com/shopify/erb-lint"> aria-label="github.com/shopify/erb-lint"></a>
+```
+
 ### **Correct** code for this rule  👍
 
 ```erb
@@ -44,3 +60,7 @@ If you determine that there are valid scenarios for `aria-label` to start with l
 ```erb
 <button aria-label="Close">
 ````
+
+```erb
+<a href="https://github.com/shopify/erb-lint"> aria-label="Shopify/erb-lint on GitHub"></a>
+```

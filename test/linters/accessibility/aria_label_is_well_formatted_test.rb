@@ -13,10 +13,11 @@ class AriaLabelIsWellFormatted < LinterTestCase
      <button aria-label="check-box-1" ></button>
      <button aria-label="ok" ></button>
      <button aria-label="no" ></button>
+     <button aria-label="Go to my&#10;website." ></button>
     HTML
     @linter.run(processed_source)
 
-    assert_equal 4, @linter.offenses.count
+    assert_equal 5, @linter.offenses.count
   end
 
   def test_does_not_warn_when_aria_labelledby_starts_with_downcase
