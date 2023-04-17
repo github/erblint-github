@@ -57,7 +57,7 @@ module ERBLint
 
       def possible_attribute_values(tag, attr_name)
         value = tag.attributes[attr_name]&.value || nil
-        basic_conditional_code_check(value || "") || [value].compact
+        [value].compact
       end
 
       # Map possible values from condition
