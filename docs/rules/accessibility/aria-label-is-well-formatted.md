@@ -48,7 +48,7 @@ If you determine that there are valid scenarios for `aria-label` to start with l
 ```
 
 ```erb
-<a href="https://github.com/shopify/erb-lint"> aria-label="github.com/shopify/erb-lint"></a>
+<a href="https://github.com/shopify/erb-lint" aria-label="github.com/shopify/erb-lint"></a>
 ```
 
 ### **Correct** code for this rule  👍
@@ -62,5 +62,5 @@ If you determine that there are valid scenarios for `aria-label` to start with l
 ````
 
 ```erb
-<a href="https://github.com/shopify/erb-lint"> aria-label="Shopify/erb-lint on GitHub"></a>
+<a href="https://github.com/shopify/erb-lint" aria-label="Shopify/erb-lint on GitHub"></a>
 ```
