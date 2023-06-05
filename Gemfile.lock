@@ -64,7 +64,7 @@ GEM
     rake (13.0.6)
     regexp_parser (2.8.0)
     rexml (3.2.5)
-    rubocop (1.51.0)
+    rubocop (1.52.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
@@ -103,7 +103,7 @@ DEPENDENCIES
   minitest (~> 5.18.0)
   mocha (~> 2.0.2)
   rake (~> 13.0.6)
-  rubocop (= 1.51.0)
+  rubocop (= 1.52.0)
   rubocop-github (~> 0.20.0)
 
 BUNDLED WITH
