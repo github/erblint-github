@@ -13,16 +13,6 @@ module ERBLint
           VALID_DISABLED_TAGS = %w[button input textarea option select fieldset optgroup task-lists].freeze
           MESSAGE = "`disabled` is only valid on #{VALID_DISABLED_TAGS.join(', ')}."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.closing?
@@ -30,10 +20,6 @@ module ERBLint
               next if tag.attributes["disabled"].nil?
 
               generate_offense(self.class, processed_source, tag)
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

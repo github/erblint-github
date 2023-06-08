@@ -12,10 +12,6 @@ module ERBLint
 
           MESSAGE = "Nesting interactive elements produces invalid HTML, and ssistive technologies, such as screen readers, might ignore or respond unexpectedly to such nested controls."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
           def run(processed_source)
             last_interactive_element = nil
             tags(processed_source).each do |tag|
@@ -33,10 +29,6 @@ module ERBLint
               end
 
               last_interactive_element = tag unless tag&.name == "input"
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

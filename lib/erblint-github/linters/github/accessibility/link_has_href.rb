@@ -12,11 +12,6 @@ module ERBLint
 
           MESSAGE = "Links should go somewhere, you probably want to use a `<button>` instead."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.name != "a"
@@ -25,10 +20,6 @@ module ERBLint
               href = possible_attribute_values(tag, "href")
               name = tag.attributes["name"]
               generate_offense(self.class, processed_source, tag) if (!name && href.empty?) || href.include?("#")
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

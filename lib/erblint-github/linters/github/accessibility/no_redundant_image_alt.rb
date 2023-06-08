@@ -13,11 +13,6 @@ module ERBLint
           MESSAGE = "<img> alt prop should not contain `image` or `picture` as screen readers already announce the element as an image"
           REDUNDANT_ALT_WORDS = %w[image picture].freeze
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.name != "img"
@@ -27,10 +22,6 @@ module ERBLint
               next if alt.empty?
 
               generate_offense(self.class, processed_source, tag) if (alt.downcase.split & REDUNDANT_ALT_WORDS).any?
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

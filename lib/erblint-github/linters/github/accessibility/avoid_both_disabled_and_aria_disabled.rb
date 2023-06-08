@@ -13,11 +13,6 @@ module ERBLint
           ELEMENTS_WITH_NATIVE_DISABLED_ATTRIBUTE_SUPPORT = %w[button fieldset input optgroup option select textarea].freeze
           MESSAGE = "[aria-disabled] may be used in place of native HTML [disabled] to allow tab-focus on an otherwise ignored element. Setting both attributes is contradictory."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             tags(processed_source).each do |tag|
               next if tag.closing?
@@ -25,10 +20,6 @@ module ERBLint
               next unless tag.attributes["disabled"] && tag.attributes["aria-disabled"]
 
               generate_offense(self.class, processed_source, tag)
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end

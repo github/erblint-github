@@ -12,11 +12,6 @@ module ERBLint
 
           MESSAGE = "`<svg>` must have accessible text. Set `aria-label`, or `aria-labelledby`, or nest a `<title>` element. However, if the `<svg>` is purely decorative, hide it with `aria-hidden='true'.\nFor more info, see https://css-tricks.com/accessible-svgs/."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             current_svg = nil
             has_accessible_label = false
@@ -40,10 +35,6 @@ module ERBLint
 
                 has_accessible_label = aria_label.present? || aria_labelledby.present?
               end
-            end
-
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
         end
