@@ -27,14 +27,4 @@ class IframeHasTitleTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_does_not_raise_when_ignore_comment_with_correct_count_if_config_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::IframeHasTitleCounter 1 %>
-      <iframe></iframe>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-    assert_empty @linter.offenses
-  end
 end

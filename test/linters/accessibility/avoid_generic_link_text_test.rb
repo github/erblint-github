@@ -144,15 +144,4 @@ class AvoidGenericLinkTextTest < LinterTestCase
     refute_empty @linter.offenses
     assert_equal 3, @linter.offenses.count
   end
-
-  def test_does_not_warns_if_element_has_correct_counter_comment_if_config_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::AvoidGenericLinkTextCounter 1 %>
-      <a>Link</a>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-
-    assert_equal 0, @linter.offenses.count
-  end
 end

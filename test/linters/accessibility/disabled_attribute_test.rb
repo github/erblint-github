@@ -22,15 +22,4 @@ class DisabledAttributeTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_does_not_warns_if_element_has_correct_counter_comment_if_config_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::DisabledAttributeCounter 1 %>
-      <a href='https://github.com/' disabled>Go to GitHub</a>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-
-    assert_equal 0, @linter.offenses.count
-  end
 end

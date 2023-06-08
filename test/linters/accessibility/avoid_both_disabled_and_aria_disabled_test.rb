@@ -35,25 +35,4 @@ class AvoidBothDisabledAndAriaDisabledTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_adds_extra_offense_to_add_counter_comment_if_counter_config_enabled
-    @file = ELEMENTS_WITH_NATIVE_DISABLED_ATTRIBUTE_SUPPORT.map do |element|
-      "<#{element} aria-disabled='true' disabled> </#{element}>"
-    end.join
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-
-    assert_equal @linter.offenses.count, 8
-    assert_match(/If you must, add <%# erblint:disable GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled %> at the end of the offending line to bypass this check./, @linter.offenses.last.message)
-  end
-
-  def test_does_not_raise_when_ignore_comment_with_correct_count_if_counter_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter 1 %>
-      <button disabled aria-disabled="true">Some text</button>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-    assert_empty @linter.offenses
-  end
 end
