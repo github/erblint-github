@@ -1,4 +1,6 @@
 ---
+require:
+  - erblint-github
 linters:
   GitHub::Accessibility::AriaLabelIsWellFormatted:
     enabled: true
