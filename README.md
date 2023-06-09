@@ -1,4 +1,5 @@
 # erblint-github
+
 Template style checking for GitHub's Ruby projects
 
 ## Setup
@@ -10,49 +11,19 @@ gem "erb_lint", require: false
 gem "erblint-github"
 ```
 
-2. Require the linters within the `.erb-linters` folder. This could be done by adding a file `.erb-linters/erblint-github.rb` with the following line.
+2. Require the lint rules from this library. Currently, the only supported way is to add a new file in `.erb-linters/erblint-github.rb` with the line:
 
 ```ruby
 require "erblint-github/linters"
 ```
 
-3. Update the `erb-lint.yml` to configure the rule.
+3. Update your `erb-lint.yml` to pull in our recommended configs. This will ensure you are up-to-date with our recommendations.
 
-### .erb-lint.yml
-
-```yaml 
+```yaml
 ---
-linters:
-  GitHub::Accessibility::AriaLabelIsWellFormatted:
-    enabled: true
-  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
-    enabled: true
-  GitHub::Accessibility::AvoidGenericLinkText:
-    enabled: true
-  GitHub::Accessibility::DisabledAttribute:
-    enabled: true
-  GitHub::Accessibility::IframeHasTitle:
-    enabled: true
-  GitHub::Accessibility::ImageHasAlt:
-    enabled: true
-  GitHub::Accessibility::NavigationHasLabel:
-    enabled: true
-  GitHub::Accessibility::LinkHasHref:
-    enabled: true
-  GitHub::Accessibility::NestedInteractiveElements:
-    enabled: true
-  GitHub::Accessibility::NoAriaHiddenOnFocusable:
-    enabled: true
-  GitHub::Accessibility::NoAriaLabelMisuse:
-    enabled: true
-  GitHub::Accessibility::NoPositiveTabIndex:
-    enabled: true
-  GitHub::Accessibility::NoRedundantImageAlt:
-    enabled: true
-  GitHub::Accessibility::NoTitleAttribute:
-    enabled: true
-  GitHub::Accessibility::SvgHasAccessibleText:
-    enabled: true
+inherit_gem:
+  erblint-github:
+    - config/accessibility.yml
 ```
 
 ## Rules
