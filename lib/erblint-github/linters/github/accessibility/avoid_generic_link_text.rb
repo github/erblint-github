@@ -22,11 +22,6 @@ module ERBLint
 
           MESSAGE = "Avoid using generic link text such as #{BANNED_GENERIC_TEXT.join(', ')} which do not make sense in isolation."
 
-          class ConfigSchema < LinterConfig
-            property :counter_enabled, accepts: [true, false], default: false, reader: :counter_enabled?
-          end
-          self.config_schema = ConfigSchema
-
           def run(processed_source)
             processed_source.ast.children.each_with_index do |node, index|
               next unless node.methods.include?(:type) && node.type == :text
@@ -97,9 +92,6 @@ module ERBLint
                 end
                 banned_text = nil
               end
-            end
-            if @config.counter_enabled?
-              counter_correct?(processed_source)
             end
           end
 

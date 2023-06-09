@@ -1,5 +1,7 @@
 # Counter migration guide
 
+This is relevant for `erblint-github` versions <= 0.3.2.
+
 [ERBLint v0.4.0](https://github.com/Shopify/erb-lint/releases/tag/v0.4.0) introduces support for inline lint rule disables.
 
 Since an inline disable feature is now natively available, it is time to move away from the in-house (hacky) counter system we've used internally over the years and in this library. 🎉

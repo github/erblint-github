@@ -22,15 +22,4 @@ class NestedInteractiveElementsTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_does_not_warn_if_there_are_not_nested_interactive_elements_and_has_correct_counter_comment_with_config_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::NestedInteractiveElementsCounter 1 %>
-      <button><a href='https://github.com/'>Go to GitHub</a></button>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-
-    assert_equal 0, @linter.offenses.count
-  end
 end

@@ -27,14 +27,4 @@ class NoPositiveTabIndexTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_does_not_raise_when_ignore_comment_with_correct_count_and_config_enabled
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::NoPositiveTabIndexCounter 1 %>
-      <button tabindex='1'></button>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-    assert_empty @linter.offenses
-  end
 end

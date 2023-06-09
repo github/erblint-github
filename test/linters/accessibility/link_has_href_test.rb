@@ -22,15 +22,4 @@ class LinkHasHrefTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
-
-  def test_does_not_warn_if_link_has_href_attribute_and_has_correct_counter_comment
-    @file = <<~ERB
-      <%# erblint:counter GitHub::Accessibility::LinkHasHrefCounter 1 %>
-      <a>Go to GitHub</a>
-    ERB
-    @linter.config.counter_enabled = true
-    @linter.run(processed_source)
-
-    assert_equal 0, @linter.offenses.count
-  end
 end
