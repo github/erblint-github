@@ -5,9 +5,7 @@ class LinterTestCase < Minitest::Test
     @linter = linter_class&.new(file_loader, linter_class.config_schema.new)
   end
 
-  def linter_class
-    raise NotImplementedError
-  end
+  def linter_class; end
 
   def offenses
     @linter.offenses
