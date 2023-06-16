@@ -1,5 +1,7 @@
 ---
 linters:
+  NoUnusedDisable:
+    enabled: true
   GitHub::Accessibility::AriaLabelIsWellFormatted:
     enabled: true
   GitHub::Accessibility::AvoidBothDisabledAndAriaDisabled:
