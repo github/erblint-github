@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha", "~> 2.0.2"
   s.add_development_dependency "rake", "~> 13.0.6"
 
-  s.add_development_dependency "rubocop", "= 1.52.0"
+  s.add_development_dependency "rubocop", "= 1.52.1"
   s.add_development_dependency "rubocop-github", "~> 0.20.0"
   s.metadata["rubygems_mfa_required"] = "true"
 end
