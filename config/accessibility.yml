@@ -32,3 +32,5 @@ linters:
     enabled: true
   GitHub::Accessibility::SvgHasAccessibleText:
     enabled: true
+  GitHub::Accessibility::NoVisuallyHiddenInteractiveElements:
+    enabled: true

@@ -16,7 +16,7 @@ class RecommendedSetupWorksTest < LinterTestCase
     end
     known_linter_names ||= ERBLint::LinterRegistry.linters.map(&:simple_name)
 
-    assert_equal 15, rules_enabled_in_accessibility_config
-    assert_equal 15, known_linter_names.count { |linter| linter.include?("GitHub::Accessibility") }
+    assert_equal 16, rules_enabled_in_accessibility_config
+    assert_equal 16, known_linter_names.count { |linter| linter.include?("GitHub::Accessibility") }
   end
 end
