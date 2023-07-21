@@ -24,7 +24,7 @@ width: 1px;
 👎 Examples of **incorrect** code for this rule:
 
 ```jsx
-<h2 className="sr-only">Welcome to GitHub</h2>
+<button className="sr-only">Submit</button>
 ```
 
 👍 Examples of **correct** code for this rule:
