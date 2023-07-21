@@ -21,9 +21,9 @@ module ERBLint
               classes = possible_attribute_values(tag, "class")
               visually_hidden = true if classes.include?("sr-only")
               next unless classes.include?("sr-only") || visually_hidden
-                if INTERACTIVE_ELEMENTS.include?(tag.name)
-                  generate_offense(self.class, processed_source, tag)
-                end  
+              if INTERACTIVE_ELEMENTS.include?(tag.name)
+                generate_offense(self.class, processed_source, tag)
+              end
             end
           end
         end
