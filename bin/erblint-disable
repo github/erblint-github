@@ -11,7 +11,7 @@ rules = ARGV[0]
 rules_array = rules.split(",")
 rules_map = {}
 rules_array.each do |rule|
-  rule_underscored = rule.to_s.gsub(/::/, "/").
+  rule_underscored = rule.to_s.gsub("::", "/").
     gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
     gsub(/([a-z\d])([A-Z])/, '\1_\2').
     tr("-", "_").
