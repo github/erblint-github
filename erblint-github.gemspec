@@ -24,4 +24,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop", "= 1.54.2"
   s.add_development_dependency "rubocop-github", "~> 0.20.0"
   s.metadata["rubygems_mfa_required"] = "true"
+
+  s.executables << "erblint-disable"
 end
