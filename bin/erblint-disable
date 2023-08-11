@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "json"
+
+# Accepts comma-separated args with simple rule name
+# e.g. script/erblint-disable SomeRule1,SomeRule2
+# e.g. script/erblint-disable GitHub::Accessibility::Rule1,SomeRule2
+rules = ARGV[0]
+
+rules_array = rules.split(",")
+rules_map = {}
+rules_array.each do |rule|
+  rule_underscored = rule.to_s.gsub("::", "/").
+    gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+    gsub(/([a-z\d])([A-Z])/, '\1_\2').
+    tr("-", "_").
+    downcase.
+    gsub("git_hub", "github") # corrects rule names with `GitHub` name to align with erb-lint expectations
+  rules_map[rule] = rule_underscored
+end
+
+rules_map.each do |disable_comment_name, command_line_name|
+  output = `bin/erblint --format json --enable-linters #{command_line_name} app/views app/components packages/**/app/components app/forms/**/`
+  hashed_output = JSON.parse(output)
+  hashed_output["files"].each do |file|
+    path = file["path"]
+    offenses = file["offenses"]
+    line_numbers = offenses.map do |offense|
+      offense["location"]["last_line"]
+    end
+    File.open(path, "r+") do |file|
+      lines = file.each_line.to_a
+      line_numbers.each do |line_number|
+        line = lines[line_number - 1]
+        unless line.match?(/erblint:disable (?<rules>.*#{disable_comment_name}).*/)
+          existing_disable = line.match(/(?<=# erblint:disable)(.*) (?=%>)/)
+          if existing_disable
+            existing_disable_string = existing_disable.captures[0]
+            add_new_disable = "#{existing_disable_string}, #{disable_comment_name}"
+            lines[line_number - 1] = lines[line_number - 1].gsub(existing_disable_string, add_new_disable)
+          else
+            lines[line_number - 1] = lines[line_number - 1].gsub("\n", "") + "<%# erblint:disable #{disable_comment_name} %>\n"
+          end
+        end
+      end
+      file.rewind
+      file.write(lines.join)
+    end
+  end
+end
+
+exit 0
