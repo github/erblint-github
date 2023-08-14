@@ -18,6 +18,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     ast (2.4.2)
+    base64 (0.1.1)
     better_html (2.0.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -66,7 +67,8 @@ GEM
     rake (13.0.6)
     regexp_parser (2.8.1)
     rexml (3.2.6)
-    rubocop (1.55.1)
+    rubocop (1.56.0)
+      base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -106,7 +108,7 @@ DEPENDENCIES
   minitest (~> 5.19.0)
   mocha (~> 2.1.0)
   rake (~> 13.0.6)
-  rubocop (= 1.55.1)
+  rubocop (= 1.56.0)
   rubocop-github (~> 0.20.0)
 
 BUNDLED WITH
