@@ -56,7 +56,7 @@ GEM
       ast (~> 2.4.1)
       racc
     racc (1.7.1)
-    rack (3.0.4.1)
+    rack (3.0.8)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
