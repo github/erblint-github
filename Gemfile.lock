@@ -29,7 +29,7 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
-    erb_lint (0.4.0)
+    erb_lint (0.5.0)
       activesupport
       better_html (>= 2.0.1)
       parser (>= 2.7.1.4)
@@ -44,11 +44,11 @@ GEM
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mini_portile2 (2.8.2)
+    mini_portile2 (2.8.4)
     minitest (5.19.0)
     mocha (2.1.0)
       ruby2_keywords (>= 0.0.5)
-    nokogiri (1.15.2)
+    nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     parallel (1.23.0)
@@ -57,8 +57,9 @@ GEM
       racc
     racc (1.7.1)
     rack (3.0.8)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
+    rails-dom-testing (2.2.0)
+      activesupport (>= 5.0.0)
+      minitest
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
@@ -103,7 +104,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  erb_lint (~> 0.4.0)
+  erb_lint (~> 0.5.0)
   erblint-github!
   minitest (~> 5.19.0)
   mocha (~> 2.1.0)
