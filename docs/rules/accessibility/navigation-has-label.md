@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-This rule enforces that a navigation landmark (a `<nav>` or a `role="navigation"`) has an accessible name. This rule is helpful for sites (like GitHub) where multiple navigation is common.
+This rule enforces that a navigation landmark (a `<nav>` or a `role="navigation"`) has an accessible name. This rule is helpful for sites (like GitHub) where multiple navigation elements is common.
 
 An accessible name ensures that one can distinguish between multiple navigation elements.
 
