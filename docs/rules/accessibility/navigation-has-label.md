@@ -6,7 +6,7 @@ This rule enforces that a navigation landmark (a `<nav>` or a `role="navigation"
 
 An accessible name ensures that one can distinguish between multiple navigation elements.
 
-If the navigation area begins with a heading, use the heading to label the navigation element using the `aria-labelledby` attribute. If there is no heading, then you may set `aria-label`. Make sure to format the text the same way you should visual text (Related: [aria-label is well formatted](./aria-label-is-well-formatted.md)).
+If the navigation area begins with a heading, use the heading to label the navigation element using the `aria-labelledby` attribute. If there is no heading, then you may set `aria-label`. Make sure to format the text the same way you would visual text (Related: [aria-label is well formatted](./aria-label-is-well-formatted.md)).
 
 ## Resources
 
