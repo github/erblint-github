@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.authors = ["GitHub Open Source"]
 
   s.add_development_dependency "erb_lint", "~> 0.5.0"
-  s.add_development_dependency "minitest", "~> 5.19.0"
+  s.add_development_dependency "minitest", "~> 5.20.0"
   s.add_development_dependency "mocha", "~> 2.1.0"
   s.add_development_dependency "rake", "~> 13.0.6"
 
