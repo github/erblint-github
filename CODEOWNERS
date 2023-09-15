@@ -1,1 +1,3 @@
 * @github/accessibility-reviewers
+lib/erblint-github/linters/github/primer/* @github/primer-reviewers
+erblint-github/test/linters/primer/* @github/primer-reviewers
