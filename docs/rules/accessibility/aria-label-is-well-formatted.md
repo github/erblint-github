@@ -11,6 +11,12 @@ Keep the following practices in mind:
 - Do not use line-break characters like `&#10;`. An accessible name should be concise to start with.
 - Do not set the `aria-label` to a URL. Instead, use an appropriate human-friendly description.
 
+### Be wary of `[aria-label]` on disallowed elements ⚠️
+
+You may come across a scenario where `[aria-label]` is set on a generic `div` or `span`. This should also be flagged with the [NoAriaLabelMisuse](https://github.com/github/erblint-github/blob/main/docs/rules/accessibility/no-aria-label-misuse.md).
+
+In this scenario, prioritize removing the `aria-label`!
+
 ## Resources
 
 - [Staff only: Guidance on naming controls](https://github.com/github/accessibility-playbook/blob/main/content/link-and-button-guidance.mdx#guidance-on-naming-controls)
