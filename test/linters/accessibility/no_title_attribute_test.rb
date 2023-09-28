@@ -13,7 +13,7 @@ class NoTitleAttributeTest < LinterTestCase
 
     assert_equal(1, @linter.offenses.count)
     error_messages = @linter.offenses.map(&:message).sort
-    assert_match(/The title attribute should never be used unless for an `<iframe>` as it is inaccessible for several groups of users./, error_messages.last)
+    assert_match(/The title attribute should never be used as it is inaccessible for several groups of users./, error_messages.last)
   end
 
   def test_does_not_warn_if_iframe_sets_title
