@@ -22,4 +22,11 @@ class NoTitleAttributeTest < LinterTestCase
 
     assert_empty @linter.offenses
   end
+
+  def test_does_not_warn_if_link_sets_title
+    @file = "<link rel='unapi-server' type='application/xml' title='unAPI' href='/unapi'/></link>"
+    @linter.run(processed_source)
+
+    assert_empty @linter.offenses
+  end
 end
