@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-The `title` attribute is strongly discouraged. The only exception is on an `<iframe>` element. It is hardly useful and cannot be accessed by multiple groups of users including keyboard-only users and mobile users.
+The `title` attribute is strongly discouraged. The only exceptions are for `<link>` and `<iframe>` element. It is hardly useful and cannot be accessed by multiple groups of users including keyboard-only users and mobile users.
 
 The `title` attribute is commonly seen set on links, matching the link text. This is redundant and unnecessary so it can be simply be removed.
 

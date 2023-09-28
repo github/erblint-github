@@ -10,7 +10,7 @@ module ERBLint
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
 
-          MESSAGE = "The title attribute should never be used as it is inaccessible for several groups of users. Exceptions are <iframe> and <link>."
+          MESSAGE = "The title attribute should never be used as it is inaccessible for several groups of users. Exceptions are provided for <iframe> and <link>."
 
           def run(processed_source)
             tags(processed_source).each do |tag|
