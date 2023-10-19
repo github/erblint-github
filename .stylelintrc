@@ -1,0 +1,4 @@
+{
+  "extends": ["@primer/stylelint-config"],
+  "rules": { }
+}
