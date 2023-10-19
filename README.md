@@ -41,6 +41,7 @@ inherit_gem:
 - [GitHub::Accessibility::NoAriaLabelMisuse](./docs/rules/accessibility/no-aria-label-misuse.md)
 - [GitHub::Accessibility::NoPositiveTabIndex](./docs/rules/accessibility/no-positive-tab-index.md)
 - [GitHub::Accessibility::NoRedundantImageAlt](./docs/rules/accessibility/no-redundant-image-alt.md)
+- - [GitHub::Accessibility::NoVisuallyHiddenInteractiveElements](./docs/rules/accessibility/no-visually-hidden-interactive-elements.md)
 - [GitHub::Accessibility::NoTitleAttribute](./docs/rules/accessibility/no-title-attribute.md)
 - [GitHub::Accessibility::SvgHasAccessibleText](./docs/rules/accessibility/svg-has-accessible-text.md)
 
