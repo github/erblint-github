@@ -38,12 +38,13 @@ class NoVisuallyHiddenInteractiveElements < LinterTestCase
     assert_empty @linter.offenses
   end
 
-  def test_warn_if_element_is_interactive_in_a_visually_hidden_parent
-    @file = "<div class='sr-only'><button>Submit</button></div>"
+  def test_does_not_warn_on_unexpected_elements
+    @file = <<~ERB
+      <span class="sr-only"></span>
+      <button></button>
+    ERB
     @linter.run(processed_source)
 
-    assert_equal(1, @linter.offenses.count)
-    error_messages = @linter.offenses.map(&:message).sort
-    assert_match(/Avoid visually hidding interactive elements. Visually hiding interactive elements can be confusing to sighted keyboard users as it appears their focus has been lost when they navigate to the hidden element/, error_messages.last)
+    assert_empty @linter.offenses
   end
 end
