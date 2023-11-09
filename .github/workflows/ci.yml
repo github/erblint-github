@@ -33,7 +33,9 @@ jobs:
         with:
           cache: 'npm'
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle install
+          npm install
       - name: Run tests
         run: bundle exec rake
   docs-coverage:
