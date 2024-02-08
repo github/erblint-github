@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "erblint-github"
-  s.version = "0.5.1"
+  s.version = "1.0.0"
   s.summary = "erblint GitHub"
   s.description = "Template style checking for GitHub Ruby repositories"
   s.homepage = "https://github.com/github/erblint-github"
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files = Dir["README.md", "LICENSE", "lib/**/*", "config/**/*"]
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.7.0"
+  s.required_ruby_version = ">= 3.0.0"
 
   s.email = ["opensource+erblint-github@github.com"]
   s.authors = ["GitHub Open Source"]
