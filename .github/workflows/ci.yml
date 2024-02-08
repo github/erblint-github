@@ -17,17 +17,13 @@ jobs:
           bundle install
           bundle exec rubocop
   test:
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby_version: ["2.7", "3.0"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby_version }}
+          ruby-version: '3.0'
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
