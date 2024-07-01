@@ -60,12 +60,6 @@ module ERBLint
         end
       end
 
-      # Map possible values from condition
-      def basic_conditional_code_check(code)
-        conditional_match = code.match(/["'](.+)["']\sif|unless\s.+/) || code.match(/.+\s?\s["'](.+)["']\s:\s["'](.+)["']/)
-        [conditional_match[1], conditional_match[2]].compact if conditional_match
-      end
-
       def tags(processed_source)
         processed_source.parser.nodes_with_type(:tag).map { |tag_node| BetterHtml::Tree::Tag.from_node(tag_node) }
       end
