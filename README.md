@@ -47,7 +47,7 @@ inherit_gem:
 
 ## Testing
 
-```bash
+```sh
 bundle install
 bundle exec rake
 ```
