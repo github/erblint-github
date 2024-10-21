@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.email = ["opensource+erblint-github@github.com"]
   s.authors = ["GitHub Open Source"]
 
-  s.add_development_dependency "erb_lint", "~> 0.6.0"
+  s.add_development_dependency "erb_lint", "~> 0.7.0"
   s.add_development_dependency "minitest", "~> 5.25.1"
   s.add_development_dependency "mocha", "~> 2.4.0"
   s.add_development_dependency "rake", "~> 13.2.1"
