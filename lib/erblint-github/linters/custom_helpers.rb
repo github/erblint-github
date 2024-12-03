@@ -36,11 +36,12 @@ module ERBLint
         processed_source.parser.ast.descendants(:erb).each do |node|
           indicator_node, _, code_node, = *node
           indicator = indicator_node&.loc&.source
-          comment = code_node&.loc&.source&.strip
+          comment = code_node&.loc&.source
+          stripped_comment = comment&.strip
 
-          if indicator == "#" && comment.start_with?("erblint:counter") && comment.match(rule_name)
+          if indicator == "#" && stripped_comment.start_with?("erblint:counter") && stripped_comment.match(rule_name)
             comment_node = node
-            expected_count = comment.match(/\s(\d+)\s?$/)[1].to_i
+            expected_count = stripped_comment.match(/\s(\d+)\s?$/)[1].to_i
           end
         end
 
