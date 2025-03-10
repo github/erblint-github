@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha", "~> 2.7.0"
   s.add_development_dependency "rake", "~> 13.2.1"
 
-  s.add_development_dependency "rubocop", "= 1.72.2"
-  s.add_development_dependency "rubocop-github", "~> 0.22.0"
+  s.add_development_dependency "rubocop", "= 1.73.2"
+  s.add_development_dependency "rubocop-github", "~> 0.23.0"
   s.metadata["rubygems_mfa_required"] = "true"
 
   s.executables << "erblint-disable"
