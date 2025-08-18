@@ -9,6 +9,7 @@ module ERBLint
         class NoVisuallyHiddenInteractiveElements < Linter
           include ERBLint::Linters::CustomHelpers
           include LinterRegistry
+
           INTERACTIVE_ELEMENTS = %w[a button summary select option textarea].freeze
 
           MESSAGE = "Avoid visually hidding interactive elements. Visually hiding interactive elements can be confusing to sighted keyboard users as it appears their focus has been lost when they navigate to the hidden element"
