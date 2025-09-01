@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Setup Ruby
-        uses: ruby/setup-ruby@efbf473cab83af4468e8606cc33eca9281bb213f
+        uses: ruby/setup-ruby@44511735964dcb71245e7e55f72539531f7bc0eb
         with:
           ruby-version: '3.0'
           bundler-cache: true
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Setup Ruby
-        uses: ruby/setup-ruby@efbf473cab83af4468e8606cc33eca9281bb213f
+        uses: ruby/setup-ruby@44511735964dcb71245e7e55f72539531f7bc0eb
         with:
           ruby-version: '3.0'
           bundler-cache: true
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Setup Ruby
-        uses: ruby/setup-ruby@efbf473cab83af4468e8606cc33eca9281bb213f
+        uses: ruby/setup-ruby@44511735964dcb71245e7e55f72539531f7bc0eb
         with:
           ruby-version: '3.0'
           bundler-cache: true
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Setup Ruby
-        uses: ruby/setup-ruby@efbf473cab83af4468e8606cc33eca9281bb213f
+        uses: ruby/setup-ruby@44511735964dcb71245e7e55f72539531f7bc0eb
         with:
           ruby-version: '3.0'
           bundler-cache: true
