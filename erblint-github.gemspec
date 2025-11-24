@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "erb_lint", "~> 0.9.0"
   s.add_development_dependency "minitest", "~> 5.26.0"
-  s.add_development_dependency "mocha", "~> 2.7.0"
+  s.add_development_dependency "mocha", "~> 2.8.2"
   s.add_development_dependency "rake", "~> 13.3.0"
 
   s.add_development_dependency "rubocop", "= 1.81.7"
