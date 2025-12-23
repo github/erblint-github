@@ -60,7 +60,7 @@ GEM
       nokogiri (>= 1.12.0)
     mini_portile2 (2.8.8)
     minitest (5.26.1)
-    mocha (2.8.2)
+    mocha (3.0.1)
       ruby2_keywords (>= 0.0.5)
     mutex_m (0.3.0)
     nokogiri (1.17.2)
@@ -128,7 +128,7 @@ DEPENDENCIES
   erb_lint (~> 0.9.0)
   erblint-github!
   minitest (~> 5.26.0)
-  mocha (~> 2.8.2)
+  mocha (~> 3.0.1)
   rake (~> 13.3.0)
   rubocop (= 1.82.0)
   rubocop-github (~> 0.23.0)
